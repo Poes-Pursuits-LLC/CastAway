@@ -8,13 +8,11 @@ import { type DateRange } from 'react-day-picker'
 import { Button } from '@ui/button'
 import { Form } from '@ui/form'
 import LocationSelector from './LocationSelector'
-import TravelerInput, {
-    formSchema,
-    type TripFormValues,
-} from './TravellerInput'
 import SpeciesSelector from './SpeciesSelector'
 import DateRangeSelector from './DateRangeSelector'
 import { submitTrip } from '../server'
+import { TravelersInput } from './TravellerInput'
+import { z } from 'zod'
 
 export interface Location {
     id: string
@@ -24,6 +22,26 @@ export interface Location {
     image: string
     fishTypes: string[]
 }
+
+export const formSchema = z.object({
+    locationId: z.string({
+        required_error: 'Please select a fishing destination',
+    }),
+    travelers: z.coerce
+        .number()
+        .int()
+        .min(1, {
+            message: 'Please add at least 1 traveler',
+        })
+        .max(6, {
+            message: 'Maximum 6 travelers allowed',
+        }),
+    fishType: z.string({
+        required_error: 'Please select a fish species to target',
+    }),
+})
+
+export type TripFormValues = z.infer<typeof formSchema>
 
 interface TripPlannerFormProps {
     locations: Location[]
@@ -75,7 +93,7 @@ const TripPlannerForm = ({ locations }: TripPlannerFormProps) => {
                             control={form.control}
                             locations={locations}
                         />
-                        <TravelerInput control={form.control} />
+                        <TravelersInput control={form.control} />
                         <SpeciesSelector
                             control={form.control}
                             fishTypes={allFishTypes}

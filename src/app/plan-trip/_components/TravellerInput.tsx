@@ -9,34 +9,13 @@ import {
 import { Input } from '@ui/input'
 import { Users } from 'lucide-react'
 import { type Control } from 'react-hook-form'
-
-import { z } from 'zod'
-
-export const formSchema = z.object({
-    locationId: z.string({
-        required_error: 'Please select a fishing destination',
-    }),
-    travelers: z.coerce
-        .number()
-        .int()
-        .min(1, {
-            message: 'Please add at least 1 traveler',
-        })
-        .max(20, {
-            message: 'Maximum 20 travelers allowed',
-        }),
-    fishType: z.string({
-        required_error: 'Please select a fish species to target',
-    }),
-})
-
-export type TripFormValues = z.infer<typeof formSchema>
+import { type TripFormValues } from './TripPlannerForm'
 
 interface TravelersInputProps {
     control: Control<TripFormValues>
 }
 
-const TravelersInput = ({ control }: TravelersInputProps) => {
+export const TravelersInput = ({ control }: TravelersInputProps) => {
     return (
         <FormField
             control={control}
@@ -66,5 +45,3 @@ const TravelersInput = ({ control }: TravelersInputProps) => {
         />
     )
 }
-
-export default TravelersInput
