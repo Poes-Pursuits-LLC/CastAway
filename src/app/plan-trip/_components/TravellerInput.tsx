@@ -5,8 +5,8 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-} from '~/components/ui/form'
-import { Input } from '~/components/ui/input'
+} from '@ui/form'
+import { Input } from '@ui/input'
 import { Users } from 'lucide-react'
 import { type Control } from 'react-hook-form'
 

@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Logo } from "../Logo";
-import { Calendar, Compass, MapPin, MenuIcon, XIcon } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "~/lib/utils";
-import { Button } from "~/components/ui/button";
-import Link from "next/link";
+import { useState } from 'react'
+import { Logo } from '../Logo'
+import { Calendar, Compass, MapPin, MenuIcon, XIcon } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { cn } from '~/lib/utils'
+import { Button } from '@ui/button'
+import Link from 'next/link'
 
 const navItems = [
     {

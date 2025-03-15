@@ -1,10 +1,12 @@
-import { type Config } from "drizzle-kit";
+import { defineConfig } from 'drizzle-kit'
+import { Resource } from 'sst'
+import './sst-env.d.ts'
 
-export default {
-  schema: "./src/server/db/schema.ts",
-  dialect: "postgresql",
-  dbCredentials: {
-    url: process.env.DATABASE_URL!,
-  },
-  tablesFilter: ["travel-app_*"],
-} satisfies Config;
+export default defineConfig({
+    schema: ['src/core/**/*.sql.ts'],
+    dialect: 'postgresql',
+    out: './migrations',
+    dbCredentials: {
+        url: Resource.DatabaseUrl.value,
+    },
+})

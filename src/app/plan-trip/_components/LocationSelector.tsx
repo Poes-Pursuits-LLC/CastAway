@@ -5,14 +5,14 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-} from '~/components/ui/form'
+} from '@ui/form'
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '~/components/ui/select'
+} from '@ui/select'
 import { MapPin } from 'lucide-react'
 import { type Control } from 'react-hook-form'
 import { type TripFormValues } from './TravellerInput'
@@ -47,12 +47,10 @@ const LocationSelector = ({ control, locations }: LocationSelectorProps) => {
                     >
                         <FormControl>
                             <SelectTrigger className="h-12 bg-white/90 border-white/50 text-gray-800 focus:ring-#0EA5E9 shadow-sm">
-                                <SelectValue placeholder="Select a fishing destination">
-                                    <div className="flex items-center">
-                                        <MapPin className="mr-2 h-4 w-4 text-#0EA5E9" />
-                                        <span>Select a destination</span>
-                                    </div>
-                                </SelectValue>
+                                <div className="flex gap-2">
+                                    <MapPin className="h-4 w-4" />
+                                    <SelectValue placeholder="Select a fishing destination" />
+                                </div>
                             </SelectTrigger>
                         </FormControl>
                         <SelectContent className="bg-white border-white/30 text-gray-800">

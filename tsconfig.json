@@ -26,7 +26,11 @@
         /* Path Aliases */
         "baseUrl": ".",
         "paths": {
-            "~/*": ["./src/*"]
+            "~/*": ["./src/*"],
+            "@server/*": ["./src/server/*"],
+            "@clients/*": ["./src/clients/*"],
+            "@core/*": ["./src/core/*"],
+            "@ui/*": ["./src/ui/*"]
         }
     },
     "include": [
@@ -34,10 +38,8 @@
         "next-env.d.ts",
         "**/*.ts",
         "**/*.tsx",
-        "**/*.cjs",
-        "**/*.js",
         ".next/types/**/*.ts",
         "eslint.config.js"
     ],
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules", ".sst", "**/\\.sst/*", ".sst/**/*"]
 }

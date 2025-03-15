@@ -3,12 +3,12 @@ import {
     Instagram,
     Twitter,
     Youtube,
-    Github,
     ChevronRight,
 } from 'lucide-react'
 import Link from 'next/link'
-import { Button } from '~/components/ui/button'
-import { Separator } from '~/components/ui/separator'
+import { Button } from '@ui/button'
+import { Separator } from '@ui/separator'
+import { Logo } from './Logo'
 
 const Footer = () => {
     const currentYear = new Date().getFullYear()
@@ -19,9 +19,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
                     {/* Company Info */}
                     <div className="flex flex-col">
-                        <h3 className="font-display text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0EA5E9] to-[#10B981] mb-4">
-                            CastAway
-                        </h3>
+                        <Logo />
                         <p className="text-sm text-gray-600 max-w-xs">
                             Your premier destination for expertly guided fly
                             fishing adventures in the most beautiful waters

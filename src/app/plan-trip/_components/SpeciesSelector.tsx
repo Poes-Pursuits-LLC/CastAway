@@ -5,14 +5,14 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-} from '~/components/ui/form'
+} from '@ui/form'
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '~/components/ui/select'
+} from '@ui/select'
 import { Fish } from 'lucide-react'
 import { type Control } from 'react-hook-form'
 import { type TripFormValues } from './TravellerInput'

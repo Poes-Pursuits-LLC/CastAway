@@ -13,11 +13,28 @@ declare module "sst" {
       "type": "sst.sst.Secret"
       "value": string
     }
+    "DatabaseUrl": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
+    "Server": {
+      "name": string
+      "type": "sst.aws.Function"
+      "url": string
+    }
     "Web": {
       "type": "sst.aws.Nextjs"
       "url": string
     }
     "WebUrl": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
+    "XAIApiKey": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
+    "XAIUrl": {
       "type": "sst.sst.Secret"
       "value": string
     }

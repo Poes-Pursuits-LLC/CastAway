@@ -68,12 +68,9 @@ export const PlanTripPage = () => {
             className="min-h-screen pt-24 pb-16 px-4 bg-cover bg-center relative"
             style={{
                 backgroundImage:
-                    "url('https://images.unsplash.com/photo-1621496503717-027452b5c450?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80')",
+                    "url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')",
             }}
         >
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0EA5E9]/40 via-black/30 to-[#10B981]/40"></div>
-
             <div className="max-w-4xl mx-auto relative">
                 <div className="text-center mb-12">
                     <h1 className="text-4xl sm:text-5xl font-display font-bold mb-4 text-white">
@@ -81,7 +78,7 @@ export const PlanTripPage = () => {
                     </h1>
                     <p className="text-lg text-white/90 max-w-2xl mx-auto">
                         Complete the form below to start planning your next fly
-                        fishing adventure. We'll help you find the perfect
+                        fishing adventure. We&apos;ll help you find the perfect
                         location, flights, and accommodations.
                     </p>
                 </div>

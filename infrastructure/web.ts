@@ -1,13 +1,12 @@
 import type {} from '../.sst/platform/config'
 
-// import { server } from './server'
+import { server } from './server'
 import { allSecrets, secret } from './secret'
-// import { websocket } from './websocket'
 import { type NextjsArgs } from '../.sst/platform/src/components/aws'
 // import { isProduction } from './stage'
 
 const webConfig: NextjsArgs = {
-    link: [...allSecrets],
+    link: [server, ...allSecrets],
     dev: {
         autostart: true,
         command: 'pnpm run dev',
@@ -26,8 +25,8 @@ const webConfig: NextjsArgs = {
 
 // if (isProduction) {
 //     webConfig.domain = {
-//         name: 'lovebound.io',
-//         redirects: ['www.lovebound.io'],
+//         name: 'castaway.io',
+//         redirects: ['www.castaway.io'],
 //     }
 // }
 

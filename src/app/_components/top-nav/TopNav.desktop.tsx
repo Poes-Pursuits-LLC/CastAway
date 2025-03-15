@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { cn } from '~/lib/utils'
 import { Logo } from '../Logo'
 import Link from 'next/link'
-import { Button } from '~/components/ui/button'
+import { Button } from '@ui/button'
 
 export const DesktopNav = (props: {
     navItems: {
