@@ -1,6 +1,5 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Plane } from 'lucide-react'
 import { AccommodationsPicker } from './AccommodationsPicker'
 
 export const AccommodationsCard = () => {

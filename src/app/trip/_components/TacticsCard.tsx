@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { Label } from '@ui/label'
 import { Separator } from '@ui/separator'
-import { FishSpecies } from './SpeciesCard'
 
 interface TacticsInfo {
     flies: string[]
