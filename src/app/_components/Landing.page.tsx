@@ -1,3 +1,4 @@
+import CTA from './CTA'
 import FAQ from './FAQ'
 import Footer from './Footer'
 import Hero from './Hero'
@@ -12,6 +13,7 @@ export const LandingPage = () => {
             <div id="main-content container mx-auto px-4 py-12">
                 <Locations />
                 <FAQ />
+                <CTA />
                 <Footer />
             </div>
         </main>

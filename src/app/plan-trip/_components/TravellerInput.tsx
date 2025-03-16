@@ -21,7 +21,7 @@ export const TravelersInput = ({ control }: TravelersInputProps) => {
             control={control}
             name="travelers"
             render={({ field }) => (
-                <FormItem className="backdrop-blur-sm bg-white/40 p-4 rounded-lg border border-white/30 shadow-lg">
+                <FormItem className="backdrop-blur-md bg-white/75 p-4 rounded-lg border shadow-lg">
                     <FormLabel className="text-gray-800 text-lg font-medium">
                         Number of Travelers
                     </FormLabel>
@@ -31,7 +31,7 @@ export const TravelersInput = ({ control }: TravelersInputProps) => {
                             <Input
                                 type="number"
                                 placeholder="Enter number of travelers"
-                                className="pl-10 h-12 bg-white/90 border-white/50 text-gray-800 placeholder:text-gray-500 focus:border-#0EA5E9 shadow-sm"
+                                className="pl-10 h-12 bg-gray-100 border text-gray-800 placeholder:text-gray-500 focus:border-#0EA5E9 shadow-sm"
                                 {...field}
                             />
                         </div>

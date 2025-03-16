@@ -75,7 +75,7 @@ const TripPlannerForm = ({ locations }: TripPlannerFormProps) => {
         const { tripDescription } = await submitTrip({
             destination: values.locationId,
         })
-        setTripId((_prev) => tripDescription)
+        setTripId(() => tripDescription)
     }
 
     return (
@@ -105,7 +105,7 @@ const TripPlannerForm = ({ locations }: TripPlannerFormProps) => {
 
                         <Button
                             type="submit"
-                            className="w-full h-12 mt-4 bg-gradient-to-r from-#0EA5E9 to-[#10B981] text-white"
+                            className="w-full h-12 mt-4 bg-gradient-to-r from-[#0EA5E9] to-[#10B981] text-white"
                         >
                             Design My Trip
                         </Button>

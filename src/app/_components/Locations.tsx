@@ -13,7 +13,7 @@ const locations: Location[] = [
         name: 'Montana Rivers',
         region: 'Montana',
         country: 'USA',
-        image: 'https://images.unsplash.com/photo-1605491136068-08a8fcc14261?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80',
+        image: 'https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         fishTypes: ['Brown Trout', 'Rainbow Trout', 'Cutthroat'],
     },
     {
@@ -29,7 +29,7 @@ const locations: Location[] = [
         name: 'Alaskan Wilderness',
         region: 'Alaska',
         country: 'USA',
-        image: 'https://images.unsplash.com/photo-1534880642359-982538f1bf44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80',
+        image: 'https://images.unsplash.com/photo-1519852476561-ec618b0183ba?q=80&w=3256&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?fit=crop',
         fishTypes: ['Pacific Salmon', 'Rainbow Trout', 'Arctic Grayling'],
     },
     {
@@ -37,7 +37,7 @@ const locations: Location[] = [
         name: 'South Island',
         region: 'South Island',
         country: 'New Zealand',
-        image: 'https://images.unsplash.com/photo-1509609002717-334dad864fb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80',
+        image: 'https://images.unsplash.com/photo-1455577380025-4321f1e1dca7?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?fit=crop',
         fishTypes: ['Brown Trout', 'Rainbow Trout'],
     },
     {
@@ -45,7 +45,7 @@ const locations: Location[] = [
         name: 'Patagonia Rivers',
         region: 'Patagonia',
         country: 'Argentina',
-        image: 'https://images.unsplash.com/photo-1580097388050-8ccd196b30e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80',
+        image: 'https://images.unsplash.com/photo-1509099395498-a26c959ba0b7?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?fit=crop',
         fishTypes: ['Rainbow Trout', 'Brown Trout', 'Brook Trout'],
     },
     {
@@ -53,7 +53,7 @@ const locations: Location[] = [
         name: 'Kamchatka Peninsula',
         region: 'Far East',
         country: 'Russia',
-        image: 'https://images.unsplash.com/photo-1626089699555-45a6297a7644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80',
+        image: 'https://images.unsplash.com/photo-1498855926480-d98e83099315?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         fishTypes: ['Steelhead', 'Rainbow Trout', 'Pacific Salmon'],
     },
 ]
@@ -151,7 +151,7 @@ const LocationPicker = ({ onSelectLocation }: LocationPickerProps) => {
                         placeholder="Search destinations..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="pl-10 h-12 rounded-full"
+                        className="pl-10 h-12 rounded-full border-2"
                     />
                 </div>
             </div>
@@ -167,7 +167,7 @@ const LocationPicker = ({ onSelectLocation }: LocationPickerProps) => {
                     <motion.div
                         key={location.id}
                         variants={itemVariants}
-                        className={`relative rounded-2xl overflow-hidden group hover-lift cursor-pointer ${
+                        className={`relative rounded-2xl overflow-hidden group shadow-lg border hover-lift cursor-pointer ${
                             selectedLocation?.id === location.id
                                 ? 'ring-2 ring-primary'
                                 : ''
@@ -182,7 +182,7 @@ const LocationPicker = ({ onSelectLocation }: LocationPickerProps) => {
                                 width={100}
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
                         </div>
 
                         <div className="absolute bottom-0 left-0 w-full p-5 text-white">

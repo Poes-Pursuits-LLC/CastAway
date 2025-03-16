@@ -11,7 +11,7 @@ export const tripRouter = createTRPCRouter({
                 destination: z.string(),
             }),
         )
-        .mutation(async ({ ctx, input }) => {
+        .mutation(async ({ input }) => {
             const { destination } = input
             console.info('destination', destination)
             const prompt = `generate a fly fishing trip description for a trip to Southwest Montana of 100 words or so.`

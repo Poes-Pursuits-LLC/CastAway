@@ -64,19 +64,13 @@ import { MapPin, Navigation, Fish } from 'lucide-react'
 
 export const PlanTripPage = () => {
     return (
-        <div
-            className="min-h-screen pt-24 pb-16 px-4 bg-cover bg-center relative"
-            style={{
-                backgroundImage:
-                    "url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')",
-            }}
-        >
+        <div className="min-h-screen pt-24 pb-16 px-4 bg-gray-100">
             <div className="max-w-4xl mx-auto relative">
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl sm:text-5xl font-display font-bold mb-4 text-white">
+                    <h1 className="text-4xl sm:text-5xl font-display font-bold mb-4 text-gray-900">
                         Plan Your Perfect Fly Fishing Trip
                     </h1>
-                    <p className="text-lg text-white/90 max-w-2xl mx-auto">
+                    <p className="text-lg text-gray-700 max-w-2xl mx-auto">
                         Complete the form below to start planning your next fly
                         fishing adventure. We&apos;ll help you find the perfect
                         location, flights, and accommodations.
@@ -103,7 +97,7 @@ export const PlanTripPage = () => {
                     ].map((feature, i) => (
                         <div
                             key={i}
-                            className="backdrop-blur-md bg-white/30 p-6 rounded-lg border border-white/30 shadow-lg text-center flex flex-col items-center hover:translate-y-[-5px] transition-transform duration-300"
+                            className="backdrop-blur-md bg-white/75 p-6 rounded-lg border shadow-lg text-center flex flex-col items-center hover:translate-y-[-5px] transition-transform duration-300"
                         >
                             <div className="bg-gradient-to-r from-[#0EA5E9] to-[#10B981] p-3 rounded-full mb-3 text-white">
                                 {feature.icon}
@@ -118,7 +112,7 @@ export const PlanTripPage = () => {
                     ))}
                 </div>
 
-                <div className="backdrop-blur-md bg-white/30 rounded-xl overflow-hidden border border-white/30 shadow-lg">
+                <div className="backdrop-blur-md bg-white/75 rounded-xl overflow-hidden border shadow-lg">
                     <div className="p-6 md:p-10">
                         <TripPlannerForm locations={locations} />
                     </div>

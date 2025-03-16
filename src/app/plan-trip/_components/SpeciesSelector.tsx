@@ -15,7 +15,7 @@ import {
 } from '@ui/select'
 import { Fish } from 'lucide-react'
 import { type Control } from 'react-hook-form'
-import { type TripFormValues } from './TravellerInput'
+import { type TripFormValues } from './TripPlannerForm'
 
 interface FishTypeSelectorProps {
     control: Control<TripFormValues>
@@ -28,7 +28,7 @@ const FishTypeSelector = ({ control, fishTypes }: FishTypeSelectorProps) => {
             control={control}
             name="fishType"
             render={({ field }) => (
-                <FormItem className="backdrop-blur-sm bg-white/40 p-4 rounded-lg border border-white/30 shadow-lg">
+                <FormItem className="backdrop-blur-md bg-white/75 p-4 rounded-lg border shadow-lg">
                     <FormLabel className="text-gray-800 text-lg font-medium">
                         Target Fish Species
                     </FormLabel>
@@ -37,7 +37,7 @@ const FishTypeSelector = ({ control, fishTypes }: FishTypeSelectorProps) => {
                         defaultValue={field.value}
                     >
                         <FormControl>
-                            <SelectTrigger className="h-12 bg-white/90 border-white/50 text-gray-800 focus:ring-#0EA5E9 shadow-sm">
+                            <SelectTrigger className="h-12 bg-gray-100 border text-gray-800 focus:ring-#0EA5E9 shadow-sm">
                                 <SelectValue placeholder="Select target fish species">
                                     <div className="flex items-center">
                                         <Fish className="mr-2 h-4 w-4 text-#0EA5E9" />

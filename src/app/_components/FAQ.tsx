@@ -40,8 +40,8 @@ const FAQs = () => {
         <section className="w-full py-12 md:py-16">
             <div className="container px-4 md:px-6 mx-auto">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
-                    <div className="inline-block p-2 bg-gradient-to-r from-water-deep/20 to-nature-deep/20 rounded-full">
-                        <HelpCircle className="h-6 w-6 text-water-deep" />
+                    <div className="inline-block p-2 bg-gradient-to-r from-[#0EA5E9]/20 to-[#10B981]/20 rounded-full">
+                        <HelpCircle className="h-6 w-6 text-[#0EA5E9]" />
                     </div>
                     <h2 className="section-title text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                         Frequently Asked Questions

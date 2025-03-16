@@ -12,3 +12,6 @@ push:
 pull:
 	npx sst shell drizzle-kit pull
 
+# CICD
+deploy:
+	npx sst deploy --stage production --verbose

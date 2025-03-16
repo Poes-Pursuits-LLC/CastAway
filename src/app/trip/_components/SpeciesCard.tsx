@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { CardContent } from '@ui/card'
+import Image from 'next/image'
 
 export interface FishSpecies {
     id: string
@@ -27,11 +28,13 @@ const FishSpeciesCard = ({ species }: FishSpeciesProps) => {
     return (
         <motion.div
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            className="glass-morphism overflow-hidden rounded-xl shadow-lg border border-white/30 hover:shadow-xl transition-all duration-300"
+            className="bg-white glass-morphism overflow-hidden rounded-xl shadow-lg border border-white/30 hover:shadow-xl transition-all duration-300"
         >
             <div className="relative">
                 <div className="h-48 overflow-hidden">
-                    <img
+                    <Image
+                        height={400}
+                        width={300}
                         src={species.image}
                         alt={species.name}
                         className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"

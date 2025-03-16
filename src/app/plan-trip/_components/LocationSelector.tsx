@@ -15,7 +15,7 @@ import {
 } from '@ui/select'
 import { MapPin } from 'lucide-react'
 import { type Control } from 'react-hook-form'
-import { type TripFormValues } from './TravellerInput'
+import { type TripFormValues } from './TripPlannerForm'
 
 export interface Location {
     id: string
@@ -37,7 +37,7 @@ const LocationSelector = ({ control, locations }: LocationSelectorProps) => {
             control={control}
             name="locationId"
             render={({ field }) => (
-                <FormItem className="backdrop-blur-sm bg-white/40 p-4 rounded-lg border border-white/30 shadow-lg">
+                <FormItem className="backdrop-blur-md bg-white/75 p-4 rounded-lg border shadow-lg">
                     <FormLabel className="text-gray-800 text-lg font-medium">
                         Destination
                     </FormLabel>
@@ -46,7 +46,7 @@ const LocationSelector = ({ control, locations }: LocationSelectorProps) => {
                         defaultValue={field.value}
                     >
                         <FormControl>
-                            <SelectTrigger className="h-12 bg-white/90 border-white/50 text-gray-800 focus:ring-#0EA5E9 shadow-sm">
+                            <SelectTrigger className="h-12 bg-gray-100 border text-gray-800 focus:ring-#0EA5E9 shadow-sm">
                                 <div className="flex gap-2">
                                     <MapPin className="h-4 w-4" />
                                     <SelectValue placeholder="Select a fishing destination" />

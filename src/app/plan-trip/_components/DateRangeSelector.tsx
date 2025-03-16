@@ -18,7 +18,7 @@ const DateRangeSelector = ({
     setDateRange,
 }: DateRangeSelectorProps) => {
     return (
-        <div className="space-y-2 backdrop-blur-sm bg-white/40 p-4 rounded-lg border border-white/30 shadow-lg">
+        <div className="space-y-2 backdrop-blur-md bg-white/75 p-4 rounded-lg border shadow-lg">
             <FormLabel className="text-gray-800 text-lg font-medium">
                 Travel Dates
             </FormLabel>
@@ -27,7 +27,7 @@ const DateRangeSelector = ({
                     <Button
                         variant={'outline'}
                         className={cn(
-                            'w-full justify-start text-left font-normal h-12 bg-white/90 border-white/50 text-gray-800 hover:bg-white/70 shadow-sm',
+                            'w-full justify-start text-left font-normal h-12 bg-gray-100 border text-gray-800 hover:bg-white/70 shadow-sm',
                             !dateRange?.from && 'text-gray-500',
                         )}
                     >
@@ -57,15 +57,15 @@ const DateRangeSelector = ({
                             'p-3 pointer-events-auto bg-white text-gray-800 border-gray-200',
                         )}
                         disabled={(date) => date < new Date()}
-                        classNames={{
-                            day_selected:
-                                'bg-[#0EA5E9] text-white hover:bg-[#0EA5E9] hover:text-white',
-                            day_range_middle: 'bg-[#0EA5E9]/20 text-gray-800',
-                            day_range_end:
-                                'bg-[#0EA5E9] text-white hover:bg-[#0EA5E9] hover:text-white',
-                            day_range_start:
-                                'bg-[#0EA5E9] text-white hover:bg-[#0EA5E9] hover:text-white',
-                        }}
+                        // classNames={{
+                        //     day_selected:
+                        //         'bg-[#0EA5E9] text-white hover:bg-[#0EA5E9] hover:text-white',
+                        //     day_range_middle: 'bg-[#0EA5E9]/20 text-gray-800',
+                        //     day_range_end:
+                        //         'bg-[#0EA5E9] text-white hover:bg-[#0EA5E9] hover:text-white',
+                        //     day_range_start:
+                        //         'bg-[#0EA5E9] text-white hover:bg-[#0EA5E9] hover:text-white',
+                        // }}
                     />
                 </PopoverContent>
             </Popover>
