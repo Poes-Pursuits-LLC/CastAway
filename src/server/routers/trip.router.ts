@@ -1,6 +1,8 @@
 import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
-import { xAiClient } from '~/clients/xAi.client'
+import { db } from '~/clients/db.client'
+import { orchestrationClient } from '~/clients/orchestration.client'
+import { trips } from '~/core/trip/trip.sql'
 import { handleAsync } from '~/lib/utils'
 import { createTRPCRouter, publicProcedure } from '~/server/_internals/trpc'
 
@@ -8,28 +10,71 @@ export const tripRouter = createTRPCRouter({
     submitTrip: publicProcedure
         .input(
             z.object({
-                destination: z.string(),
+                destinationId: z.number(),
+                destinationName: z.string(),
+                startDate: z.string(),
+                endDate: z.string(),
+                headCount: z.number(),
+                species: z.string(),
             }),
         )
         .mutation(async ({ input }) => {
-            const { destination } = input
-            console.info('destination', destination)
-            const prompt = `generate a fly fishing trip description for a trip to Southwest Montana of 100 words or so.`
-
-            const [tripDescription, tripError] = await handleAsync(
-                xAiClient.generateTrip(prompt),
+            console.info(
+                `Invoked tripRouter.submitTrip with inputs: ${JSON.stringify(
+                    input,
+                )}`,
             )
-            if (tripError) {
+
+            const {
+                destinationId,
+                destinationName,
+                startDate,
+                endDate,
+                headCount,
+                species,
+            } = input
+
+            const [trip, createTripError] = await handleAsync(
+                db
+                    .insert(trips)
+                    .values({
+                        destinationId,
+                        startDate: new Date(startDate),
+                        endDate: new Date(endDate),
+                        headCount,
+                    })
+                    .returning({ id: trips.id }),
+            )
+            if (createTripError) {
                 throw new TRPCError({
                     code: 'INTERNAL_SERVER_ERROR',
-                    message: tripError.message,
+                    message: createTripError.message,
                 })
             }
-            console.info('wow here is our description!', tripDescription)
+
+            const [, triggerOrchestrationError] = await handleAsync(
+                orchestrationClient.send({
+                    name: 'generate.trip.content',
+                    data: {
+                        tripId: trip![0]!.id!,
+                        destinationName,
+                        headCount,
+                        startDate,
+                        endDate,
+                        species,
+                    },
+                }),
+            )
+            if (triggerOrchestrationError) {
+                throw new TRPCError({
+                    code: 'INTERNAL_SERVER_ERROR',
+                    message: triggerOrchestrationError.message,
+                })
+            }
 
             return {
                 data: {
-                    tripDescription: tripDescription!,
+                    tripId: trip![0]!.id!,
                 },
             }
         }),

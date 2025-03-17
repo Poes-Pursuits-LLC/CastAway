@@ -16,7 +16,7 @@ import {
 import { MapPin } from 'lucide-react'
 import { type Control } from 'react-hook-form'
 import { type TripFormValues } from './TripPlannerForm'
-
+import { Destination } from '~/core/destination/destination.model'
 export interface Location {
     id: string
     name: string
@@ -26,15 +26,13 @@ export interface Location {
     fishTypes: string[]
 }
 
-interface LocationSelectorProps {
+const LocationSelector = (props: {
     control: Control<TripFormValues>
-    locations: Location[]
-}
-
-const LocationSelector = ({ control, locations }: LocationSelectorProps) => {
+    destinations: Readonly<Destination[]>
+}) => {
     return (
         <FormField
-            control={control}
+            control={props.control}
             name="locationId"
             render={({ field }) => (
                 <FormItem className="backdrop-blur-md bg-white/75 p-4 rounded-lg border shadow-lg">
@@ -54,15 +52,16 @@ const LocationSelector = ({ control, locations }: LocationSelectorProps) => {
                             </SelectTrigger>
                         </FormControl>
                         <SelectContent className="bg-white border-white/30 text-gray-800">
-                            {locations.map((location) => (
+                            {props.destinations.map((destination) => (
                                 <SelectItem
-                                    key={location.id}
-                                    value={location.id}
+                                    key={destination.id}
+                                    value={destination.id.toString()}
                                     className="focus:bg-#0EA5E9/10 focus:text-gray-900"
                                 >
                                     <div className="flex items-center">
                                         <span>
-                                            {location.name}, {location.country}
+                                            {destination.name},{' '}
+                                            {destination.country}
                                         </span>
                                     </div>
                                 </SelectItem>

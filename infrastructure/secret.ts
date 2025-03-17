@@ -10,6 +10,8 @@ export const secret = {
     DatabaseUrl: new sst.Secret('DatabaseUrl'),
     XAIApiKey: new sst.Secret('XAIApiKey'),
     XAIUrl: new sst.Secret('XAIUrl'),
+    InngestSigningKey: new sst.Secret('InngestSigningKey'),
+    InngestEventKey: new sst.Secret('InngestEventKey'),
 }
 
 export const allSecrets = Object.values(secret)

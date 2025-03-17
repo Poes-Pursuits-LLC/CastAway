@@ -9,15 +9,7 @@ import {
     TableCell,
 } from '@ui/table'
 import { Checkbox } from '@ui/checkbox'
-import {
-    Shirt,
-    Smartphone,
-    Package,
-    Briefcase,
-    Bath,
-    Fish,
-    Footprints,
-} from 'lucide-react'
+import { Shirt, Smartphone, Package, Bath, Fish } from 'lucide-react'
 import { cn } from '~/lib/utils'
 
 export type PackingItem = {
@@ -33,10 +25,8 @@ export type PackingCategory =
     | 'Clothes'
     | 'Electronics'
     | 'Essentials'
-    | 'Shoes'
     | 'Toiletries'
     | 'Fishing'
-    | 'Miscellaneous'
 
 const mockPackingItems: PackingItem[] = [
     // Clothes
@@ -188,52 +178,6 @@ const mockPackingItems: PackingItem[] = [
         packed: false,
     },
 
-    // Miscellaneous
-    {
-        id: 'm1',
-        name: 'Sunglasses',
-        category: 'Miscellaneous',
-        quantity: 1,
-        packed: false,
-    },
-    {
-        id: 'm2',
-        name: 'Books',
-        category: 'Miscellaneous',
-        quantity: 2,
-        packed: false,
-    },
-    {
-        id: 'm3',
-        name: 'Neck Pillow',
-        category: 'Miscellaneous',
-        quantity: 1,
-        packed: false,
-    },
-
-    // Shoes
-    {
-        id: 's1',
-        name: 'Casual Shoes',
-        category: 'Shoes',
-        quantity: 1,
-        packed: false,
-    },
-    {
-        id: 's2',
-        name: 'Hiking Boots',
-        category: 'Shoes',
-        quantity: 1,
-        packed: false,
-    },
-    {
-        id: 's3',
-        name: 'Flip Flops',
-        category: 'Shoes',
-        quantity: 1,
-        packed: false,
-    },
-
     // Toiletries
     {
         id: 't1',
@@ -312,10 +256,8 @@ const categoryIcons = {
     Clothes: <Shirt className="h-4 w-4" />,
     Electronics: <Smartphone className="h-4 w-4" />,
     Essentials: <Package className="h-4 w-4" />,
-    Shoes: <Footprints className="h-4 w-4" />,
     Toiletries: <Bath className="h-4 w-4" />,
     Fishing: <Fish className="h-4 w-4" />,
-    Miscellaneous: <Briefcase className="h-4 w-4" />,
 }
 
 const PackingList = () => {
@@ -401,9 +343,6 @@ const PackingList = () => {
                                             </TableHead>
                                             <TableHead className="w-[100px] text-center">
                                                 Quantity
-                                            </TableHead>
-                                            <TableHead className="w-[200px]">
-                                                Notes
                                             </TableHead>
                                             <TableHead className="w-[100px] text-center">
                                                 Packed

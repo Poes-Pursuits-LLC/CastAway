@@ -1,6 +1,6 @@
 import { tripRouter } from './routers/trip.router'
 import { createCallerFactory, createTRPCRouter } from './_internals/trpc'
-
+import { destinationRouter } from './routers/destination.router'
 /**
  * This is the primary router for your server.
  *
@@ -8,6 +8,7 @@ import { createCallerFactory, createTRPCRouter } from './_internals/trpc'
  */
 export const appRouter = createTRPCRouter({
     trip: tripRouter,
+    destination: destinationRouter,
 })
 
 // export type definition of API

@@ -13,21 +13,14 @@ import DateRangeSelector from './DateRangeSelector'
 import { submitTrip } from '../server'
 import { TravelersInput } from './TravellerInput'
 import { z } from 'zod'
-
-export interface Location {
-    id: string
-    name: string
-    region: string
-    country: string
-    image: string
-    fishTypes: string[]
-}
+import { Destination } from '~/core/destination/destination.model'
+import { LoadingProgress } from './LoadingProgress'
 
 export const formSchema = z.object({
     locationId: z.string({
         required_error: 'Please select a fishing destination',
     }),
-    travelers: z.coerce
+    headCount: z.coerce
         .number()
         .int()
         .min(1, {
@@ -36,33 +29,26 @@ export const formSchema = z.object({
         .max(6, {
             message: 'Maximum 6 travelers allowed',
         }),
-    fishType: z.string({
+    species: z.string({
         required_error: 'Please select a fish species to target',
     }),
 })
 
 export type TripFormValues = z.infer<typeof formSchema>
 
-interface TripPlannerFormProps {
-    locations: Location[]
-}
-
-const TripPlannerForm = ({ locations }: TripPlannerFormProps) => {
+const TripPlannerForm = (props: Readonly<{ destinations: Destination[] }>) => {
     // State
     const [dateRange, setDateRange] = useState<DateRange | undefined>({
         from: new Date(),
-        to: undefined,
+        // one week from now
+        to: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     })
-    const [tripId, setTripId] = useState<string | null>(null)
-
-    const allFishTypes = [
-        ...new Set(locations.flatMap((location) => location.fishTypes)),
-    ].sort()
+    const [tripId, setTripId] = useState<number | null>(null)
 
     const form = useForm<TripFormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            travelers: 2,
+            headCount: 2,
         },
     })
 
@@ -72,17 +58,23 @@ const TripPlannerForm = ({ locations }: TripPlannerFormProps) => {
             return
         }
 
-        const { tripDescription } = await submitTrip({
-            destination: values.locationId,
+        const { tripId: newTripId } = await submitTrip({
+            destinationId: Number(values.locationId),
+            destinationName: props.destinations.find(
+                (destination) => destination.id === Number(values.locationId),
+            )!.name,
+            startDate: dateRange.from,
+            endDate: dateRange.to!,
+            headCount: values.headCount,
+            species: values.species,
         })
-        setTripId(() => tripDescription)
+        setTripId(newTripId)
     }
 
     return (
         <>
             {tripId ? (
-                // fancy timer loader that looks like so much is happening.
-                <div>wowwwwwwwwwwwwwww</div>
+                <LoadingProgress tripId={tripId ?? 0} />
             ) : (
                 <Form {...form}>
                     <form
@@ -91,13 +83,10 @@ const TripPlannerForm = ({ locations }: TripPlannerFormProps) => {
                     >
                         <LocationSelector
                             control={form.control}
-                            locations={locations}
+                            destinations={props.destinations}
                         />
                         <TravelersInput control={form.control} />
-                        <SpeciesSelector
-                            control={form.control}
-                            fishTypes={allFishTypes}
-                        />
+                        <SpeciesSelector control={form.control} />
                         <DateRangeSelector
                             dateRange={dateRange}
                             setDateRange={setDateRange}

@@ -8,6 +8,7 @@ import {
 } from '@ui/card'
 import { MapPin, Phone, ExternalLink } from 'lucide-react'
 import { Button } from '@ui/button'
+import Image from 'next/image'
 
 type Shop = {
     id: string
@@ -64,7 +65,9 @@ const ShopsNearby: React.FC = () => {
                             className="overflow-hidden hover-lift flex flex-col justify-between bg-white/50"
                         >
                             <div className="h-32 overflow-hidden">
-                                <img
+                                <Image
+                                    height={100}
+                                    width={100}
                                     src={shop.image}
                                     alt={shop.name}
                                     className="w-full h-full object-cover"

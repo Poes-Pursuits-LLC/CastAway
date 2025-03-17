@@ -17,16 +17,16 @@ import { Fish } from 'lucide-react'
 import { type Control } from 'react-hook-form'
 import { type TripFormValues } from './TripPlannerForm'
 
-interface FishTypeSelectorProps {
-    control: Control<TripFormValues>
-    fishTypes: string[]
-}
+const FishTypeSelector = (
+    props: Readonly<{ control: Control<TripFormValues> }>,
+) => {
+    // State
+    const fishSpecies = ['trout']
 
-const FishTypeSelector = ({ control, fishTypes }: FishTypeSelectorProps) => {
     return (
         <FormField
-            control={control}
-            name="fishType"
+            control={props.control}
+            name="species"
             render={({ field }) => (
                 <FormItem className="backdrop-blur-md bg-white/75 p-4 rounded-lg border shadow-lg">
                     <FormLabel className="text-gray-800 text-lg font-medium">
@@ -41,13 +41,13 @@ const FishTypeSelector = ({ control, fishTypes }: FishTypeSelectorProps) => {
                                 <SelectValue placeholder="Select target fish species">
                                     <div className="flex items-center">
                                         <Fish className="mr-2 h-4 w-4 text-#0EA5E9" />
-                                        <span>Select fish species</span>
+                                        <span>{field.value}</span>
                                     </div>
                                 </SelectValue>
                             </SelectTrigger>
                         </FormControl>
                         <SelectContent className="bg-white border-white/30 text-gray-800">
-                            {fishTypes.map((fishType) => (
+                            {fishSpecies.map((fishType) => (
                                 <SelectItem
                                     key={fishType}
                                     value={fishType}

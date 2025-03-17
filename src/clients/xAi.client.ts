@@ -8,9 +8,40 @@ const openai = new OpenAI({
     baseURL: Resource.XAIUrl.value,
 })
 
-export const generateTrip = async (prompt: string) => {
-    const systemPrompt =
-        "you are an expert trip planner and fly fishing expert who will construct trips for users based on where they want to go (to fish). Return the field 'tripDescription' with the description as value"
+export const generateTripDetails = async ({
+    destinationName,
+    headCount,
+    startDate,
+    endDate,
+    species,
+}: {
+    destinationName: string
+    headCount: number
+    startDate: string
+    endDate: string
+    species: string
+}) => {
+    const systemPrompt = `you are an expert trip planner and fly fishing expert who will construct trips for users 
+        based on where they want to go to fly fishing. 
+        You will do your best to provide helpful advice and suggestions for the trip.
+        You will return your suggestions in structured JSON, using the specific inputs provided 
+        by the user to generate the trip details.`
+
+    const prompt = `I want to go to ${destinationName} and I want to go fly fishing.
+    I have ${headCount} people coming with me. I want to target ${species} fish species.
+    I want to go on a trip starting on ${startDate} and ending on ${endDate}.
+    Please provide a detailed plan for the trip, including ALL of the following:
+    - A basic trip description.
+    - Up to three cities or towns that I should book accommodations in that would be a good base of operations for fishing.
+    - A list of up to 5 flies to try that are appropriate for the species, typical weather conditions, and time of year.
+    - A list of up to 5 "hatch" or bugs that are active in the area at that time of year.
+    - A list of up to 3 types of day it could make sense to go fishing.
+    - A list of up to 3 tactics that could make sense to use to target that fish that times of year.
+    - A list of 3 typical weather conditions that could be expected in the area at that time of year.
+    - A summary of the tactics that should be used and the best times to use them, incorporating the weather, hatch, and tactics.
+    - A rudimentary packing list broken down into essentials, electronics, clothes, toiletries, and fishing-specific items as well as quantities. Up to 10 items per category.
+    - a list of up to 3 nearby fly fishing shops that are in the area with contact info, if you can find it.
+    `
 
     const completion = await openai.beta.chat.completions.parse({
         model: 'grok-2',
@@ -19,7 +50,58 @@ export const generateTrip = async (prompt: string) => {
         stream: false,
         response_format: zodResponseFormat(
             z.object({
-                tripDescription: z.string(),
+                description: z.string(),
+                cityRecOne: z.string(),
+                cityRecTwo: z.string(),
+                cityRecThree: z.string(),
+                tactics: z.object({
+                    summary: z.string(),
+                    flies: z.array(z.string()),
+                    timeOfDay: z.array(z.string()),
+                    hatch: z.array(z.string()),
+                    methods: z.array(z.string()),
+                    weather: z.array(z.string()),
+                }),
+                packingList: z.object({
+                    clothes: z.array(
+                        z.object({
+                            name: z.string(),
+                            quantity: z.number(),
+                        }),
+                    ),
+                    electronics: z.array(
+                        z.object({
+                            name: z.string(),
+                            quantity: z.number(),
+                        }),
+                    ),
+                    essentials: z.array(
+                        z.object({
+                            name: z.string(),
+                            quantity: z.number(),
+                        }),
+                    ),
+                    toiletries: z.array(
+                        z.object({
+                            name: z.string(),
+                            quantity: z.number(),
+                        }),
+                    ),
+                    fishing: z.array(
+                        z.object({
+                            name: z.string(),
+                            quantity: z.number(),
+                        }),
+                    ),
+                }),
+                flyShops: z.array(
+                    z.object({
+                        name: z.string(),
+                        address: z.string(),
+                        phone: z.string(),
+                        website: z.string().optional(),
+                    }),
+                ),
             }),
             'trip',
         ),
@@ -39,11 +121,11 @@ export const generateTrip = async (prompt: string) => {
         throw new Error('No completion generated')
     }
 
-    return completion.choices[0].message.parsed!.tripDescription
+    return completion.choices[0].message.parsed
 }
 
 const xAiClient = {
-    generateTrip,
+    generateTripDetails,
 }
 
 export { xAiClient }

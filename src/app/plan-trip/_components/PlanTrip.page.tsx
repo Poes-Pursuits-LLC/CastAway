@@ -1,65 +1,4 @@
-import TripPlannerForm from './TripPlannerForm'
-
-export interface Location {
-    id: string
-    name: string
-    region: string
-    country: string
-    image: string
-    fishTypes: string[]
-}
-
-const locations: Location[] = [
-    {
-        id: 'montana',
-        name: 'Montana Rivers',
-        region: 'Montana',
-        country: 'USA',
-        image: 'https://images.unsplash.com/photo-1605491136068-08a8fcc14261?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80',
-        fishTypes: ['Brown Trout', 'Rainbow Trout', 'Cutthroat'],
-    },
-    {
-        id: 'colorado',
-        name: 'Colorado Streams',
-        region: 'Colorado',
-        country: 'USA',
-        image: 'https://images.unsplash.com/photo-1469122312224-c5846569feb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80',
-        fishTypes: ['Brook Trout', 'Rainbow Trout', 'Brown Trout'],
-    },
-    {
-        id: 'alaska',
-        name: 'Alaskan Wilderness',
-        region: 'Alaska',
-        country: 'USA',
-        image: 'https://images.unsplash.com/photo-1534880642359-982538f1bf44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80',
-        fishTypes: ['Pacific Salmon', 'Rainbow Trout', 'Arctic Grayling'],
-    },
-    {
-        id: 'nz-south',
-        name: 'South Island',
-        region: 'South Island',
-        country: 'New Zealand',
-        image: 'https://images.unsplash.com/photo-1509609002717-334dad864fb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80',
-        fishTypes: ['Brown Trout', 'Rainbow Trout'],
-    },
-    {
-        id: 'patagonia',
-        name: 'Patagonia Rivers',
-        region: 'Patagonia',
-        country: 'Argentina',
-        image: 'https://images.unsplash.com/photo-1580097388050-8ccd196b30e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80',
-        fishTypes: ['Rainbow Trout', 'Brown Trout', 'Brook Trout'],
-    },
-    {
-        id: 'russia-kamchatka',
-        name: 'Kamchatka Peninsula',
-        region: 'Far East',
-        country: 'Russia',
-        image: 'https://images.unsplash.com/photo-1626089699555-45a6297a7644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80',
-        fishTypes: ['Steelhead', 'Rainbow Trout', 'Pacific Salmon'],
-    },
-]
-
+import { PlanTripAsync } from './PlanTrip.async'
 import { MapPin, Navigation, Fish } from 'lucide-react'
 
 export const PlanTripPage = () => {
@@ -114,7 +53,7 @@ export const PlanTripPage = () => {
 
                 <div className="backdrop-blur-md bg-white/75 rounded-xl overflow-hidden border shadow-lg">
                     <div className="p-6 md:p-10">
-                        <TripPlannerForm locations={locations} />
+                        <PlanTripAsync />
                     </div>
                 </div>
             </div>

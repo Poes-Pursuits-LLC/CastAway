@@ -2,15 +2,36 @@
 
 import { api } from '@clients/api.client'
 
-export const submitTrip = async ({ destination }: { destination: string }) => {
+export const submitTrip = async ({
+    destinationId,
+    destinationName,
+    startDate,
+    endDate,
+    headCount,
+    species,
+}: {
+    destinationId: number
+    destinationName: string
+    startDate: Date
+    endDate: Date
+    headCount: number
+    species: string
+}) => {
     try {
-        const response = await api.trip.submitTrip({ destination })
+        const response = await api.trip.submitTrip({
+            destinationId,
+            destinationName,
+            startDate: startDate.toISOString(),
+            endDate: endDate.toISOString(),
+            headCount,
+            species,
+        })
         const {
-            data: { tripDescription },
+            data: { tripId },
         } = response
 
         return {
-            tripDescription,
+            tripId,
         }
     } catch (error) {
         console.error(error)

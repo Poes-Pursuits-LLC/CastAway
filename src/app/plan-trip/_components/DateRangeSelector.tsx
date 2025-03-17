@@ -57,15 +57,15 @@ const DateRangeSelector = ({
                             'p-3 pointer-events-auto bg-white text-gray-800 border-gray-200',
                         )}
                         disabled={(date) => date < new Date()}
-                        // classNames={{
-                        //     day_selected:
-                        //         'bg-[#0EA5E9] text-white hover:bg-[#0EA5E9] hover:text-white',
-                        //     day_range_middle: 'bg-[#0EA5E9]/20 text-gray-800',
-                        //     day_range_end:
-                        //         'bg-[#0EA5E9] text-white hover:bg-[#0EA5E9] hover:text-white',
-                        //     day_range_start:
-                        //         'bg-[#0EA5E9] text-white hover:bg-[#0EA5E9] hover:text-white',
-                        // }}
+                        classNames={{
+                            day_selected:
+                                'bg-[#0EA5E9] hover:bg-[#0EA5E9] hover:text-white',
+                            day_range_middle: 'bg-[#0EA5E9]/20 text-gray-800',
+                            day_range_end:
+                                'bg-[#0EA5E9] text-white hover:bg-[#0EA5E9] hover:text-white',
+                            day_range_start:
+                                'bg-[#0EA5E9] text-white hover:bg-[#0EA5E9] hover:text-white',
+                        }}
                     />
                 </PopoverContent>
             </Popover>

@@ -5,9 +5,7 @@ import { Separator } from '@ui/separator'
 interface TacticsInfo {
     flies: string[]
     weather: {
-        temperature: string[]
         conditions: string[]
-        wind: string[]
     }
     tactics: {
         methods: string[]
@@ -25,9 +23,7 @@ const tacticsInfo: TacticsInfo = {
         'Crab Patterns #2-4',
     ],
     weather: {
-        temperature: ['75-85°F Water', '80-90°F Air', 'Humid'],
         conditions: ['Partly Cloudy', 'Light Chop', 'Clear Water'],
-        wind: ['10-15 mph SE', 'Morning Calm', 'Afternoon Breeze'],
     },
     tactics: {
         methods: [
@@ -80,18 +76,6 @@ export const TacticsCard = () => {
                     </h3>
                     <div className="space-y-4">
                         <div className="flex flex-wrap gap-2">
-                            {tacticsInfo.weather.temperature.map(
-                                (temp, index) => (
-                                    <Label
-                                        key={index}
-                                        className="bg-nature-deep/10 text-nature-deep px-3 py-1 rounded-full text-sm"
-                                    >
-                                        {temp}
-                                    </Label>
-                                ),
-                            )}
-                        </div>
-                        <div className="flex flex-wrap gap-2">
                             {tacticsInfo.weather.conditions.map(
                                 (condition, index) => (
                                     <Label
@@ -102,16 +86,6 @@ export const TacticsCard = () => {
                                     </Label>
                                 ),
                             )}
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                            {tacticsInfo.weather.wind.map((wind, index) => (
-                                <Label
-                                    key={index}
-                                    className="bg-blue-400/10 text-blue-600 px-3 py-1 rounded-full text-sm"
-                                >
-                                    {wind}
-                                </Label>
-                            ))}
                         </div>
                     </div>
                 </div>

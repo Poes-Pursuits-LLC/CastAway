@@ -11,15 +11,13 @@ import { Users } from 'lucide-react'
 import { type Control } from 'react-hook-form'
 import { type TripFormValues } from './TripPlannerForm'
 
-interface TravelersInputProps {
-    control: Control<TripFormValues>
-}
-
-export const TravelersInput = ({ control }: TravelersInputProps) => {
+export const TravelersInput = (
+    props: Readonly<{ control: Control<TripFormValues> }>,
+) => {
     return (
         <FormField
-            control={control}
-            name="travelers"
+            control={props.control}
+            name="headCount"
             render={({ field }) => (
                 <FormItem className="backdrop-blur-md bg-white/75 p-4 rounded-lg border shadow-lg">
                     <FormLabel className="text-gray-800 text-lg font-medium">
