@@ -4,6 +4,7 @@ import { cn } from '~/lib/utils'
 import { Logo } from '../Logo'
 import Link from 'next/link'
 import { Button } from '@ui/button'
+import { useRouter } from 'next/navigation'
 
 export const DesktopNav = (props: {
     navItems: {
@@ -14,6 +15,7 @@ export const DesktopNav = (props: {
     visible: boolean
 }) => {
     const [hovered, setHovered] = useState<number | null>(null)
+    const router = useRouter()
 
     return (
         <motion.div
@@ -65,39 +67,38 @@ export const DesktopNav = (props: {
                     </Link>
                 ))}
             </motion.div>
-            <div className="flex items-center gap-4">
-                <AnimatePresence mode="popLayout" initial={false}>
-                    {!props.visible && (
-                        <motion.div
-                            initial={{
-                                x: 100,
-                                opacity: 0,
-                            }}
-                            animate={{
-                                x: 0,
-                                opacity: [0, 0, 1],
-                            }}
-                            exit={{
-                                x: 100,
-                                opacity: [0, 0, 0],
-                            }}
-                            transition={{
-                                duration: 0.5,
-                                ease: 'easeOut',
-                            }}
-                        />
-                    )}
-                </AnimatePresence>
-                <Link href="/plan-trip">
-                    <Button
-                        variant="default"
-                        size="sm"
-                        className="justify-start bg-gradient-to-r from-[#0EA5E9] to-[#10B981]"
-                    >
-                        Plan Your Trip
-                    </Button>
-                </Link>
-            </div>
+            <AnimatePresence mode="popLayout" initial={false}>
+                {!props.visible && (
+                    <motion.div
+                        initial={{
+                            x: 100,
+                            opacity: 0,
+                        }}
+                        animate={{
+                            x: 0,
+                            opacity: [0, 0, 1],
+                        }}
+                        exit={{
+                            x: 100,
+                            opacity: [0, 0, 0],
+                        }}
+                        transition={{
+                            duration: 0.5,
+                            ease: 'easeOut',
+                        }}
+                    />
+                )}
+            </AnimatePresence>
+            <Link href="/login">
+                <Button
+                    variant="default"
+                    onClick={() => router.push('/login')}
+                    size="sm"
+                    className="justify-start bg-gradient-to-r from-[#0EA5E9] to-[#10B981] pointer"
+                >
+                    Sign In/Up
+                </Button>
+            </Link>
         </motion.div>
     )
 }

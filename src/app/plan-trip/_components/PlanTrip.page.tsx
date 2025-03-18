@@ -1,5 +1,5 @@
 import { PlanTripAsync } from './PlanTrip.async'
-import { MapPin, Navigation, Fish } from 'lucide-react'
+import { MapPin, Navigation, Fish, Plane, Backpack, House } from 'lucide-react'
 
 export const PlanTripPage = () => {
     return (
@@ -21,17 +21,32 @@ export const PlanTripPage = () => {
                         {
                             icon: <MapPin className="h-6 w-6" />,
                             title: 'Top Destinations',
-                            desc: 'Access to premier fishing spots worldwide',
+                            desc: 'Plan trips to the best fishing, faster.',
                         },
                         {
                             icon: <Navigation className="h-6 w-6" />,
                             title: 'Custom Itineraries',
-                            desc: 'Personalized to your preferences',
+                            desc: 'Personalized to your preferences.',
+                        },
+                        {
+                            icon: <Plane className="h-6 w-6" />,
+                            title: 'Flights',
+                            desc: 'Forget the hassle of figuring out where to fly.',
                         },
                         {
                             icon: <Fish className="h-6 w-6" />,
-                            title: 'Expert Guides',
-                            desc: 'Local knowledge for the best experience',
+                            title: 'Expert Guidance',
+                            desc: 'Expert guidance on fishing your locale.',
+                        },
+                        {
+                            icon: <House className="h-6 w-6" />,
+                            title: 'Accommodations',
+                            desc: 'Find lodging faster so you can focus on the fishing.',
+                        },
+                        {
+                            icon: <Backpack className="h-6 w-6" />,
+                            title: 'Packing List',
+                            desc: 'Get a custom packing list that you can modify to save even more time.',
                         },
                     ].map((feature, i) => (
                         <div

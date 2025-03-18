@@ -14,24 +14,16 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
     {
-        question: 'What fishing equipment should I bring?',
-        answer: 'We recommend bringing your own rod and reel if you have them, but we provide high-quality equipment rentals at all our destinations. Specific gear recommendations will be provided based on your chosen location and target species.',
+        question: 'How does it work?',
+        answer: "It's simple. You specify your desired destination, the amount of people going, when you want to go, and what fish you want to target, and we'll do the rest. A custom trip with flights, accommodations, a packing list, and fly-fishing specific information like flies, weather, and tactics will be generated for you in under thirty seconds.",
     },
     {
-        question: 'Are the trips suitable for beginners?',
-        answer: 'Absolutely! Our trips cater to all skill levels, from complete beginners to experienced anglers. Our expert guides provide instruction tailored to your experience level, ensuring everyone has a successful and enjoyable fishing adventure.',
+        question: 'Why not just use Yellow Dog etc.?',
+        answer: 'Yellow Dog is an amazing service and everyone should use them. That being said, they tend to focus on expensive, all-inclusive lodge experiences which may have 3-day minimums. Roam, on the other hand, gives you immediate information as a starting point as well as tools to plan your trip, filling the niche for your DIY and budget-friendly trips.',
     },
     {
-        question: "What's included in the trip package?",
-        answer: 'Our standard packages include accommodation, guided fishing sessions, equipment rental (if needed), and local transportation. Some destinations also include meals. Each package is customizable, and you can add or remove services based on your preferences.',
-    },
-    {
-        question: "What's the best time of year for fly fishing?",
-        answer: "The ideal season varies by location and target species. In general, spring and fall offer excellent fishing conditions in most destinations. When you select a location, we'll provide detailed information about the best times to visit for optimal fishing conditions.",
-    },
-    {
-        question: 'Do I need a fishing license?',
-        answer: "Yes, most destinations require a fishing license. We'll assist you in obtaining the necessary permits as part of our service, and the cost is typically included in your package price.",
+        question: 'How much does it cost?',
+        answer: 'Roam is free to use, and you can plan your first trip without even signing up. You can sign up to save your trips and plan them without hassle, using our trip pages to manage your trips. A fully optional paid plan will be available to unlock advanced features, but the core app will be free forever',
     },
 ]
 
@@ -48,7 +40,7 @@ const FAQs = () => {
                     </h2>
                     <p className="section-subtitle max-w-[700px] text-gray-600 md:text-xl/relaxed">
                         Everything you need to know about planning your perfect
-                        fly fishing adventure
+                        fly fishing adventures.
                     </p>
                 </div>
 

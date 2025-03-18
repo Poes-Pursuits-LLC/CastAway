@@ -53,7 +53,7 @@ export const TacticsCard = (props: {
                             .map((fly, index) => (
                                 <Label
                                     key={index}
-                                    className="bg-blue-500/10 text-blue-700 px-3 py-1 rounded-full text-sm"
+                                    className="bg-red-400/10 text-red-600 px-3 py-1 rounded-full text-sm"
                                 >
                                     {fly.name}
                                 </Label>
@@ -104,32 +104,35 @@ export const TacticsCard = (props: {
                                     </Label>
                                 ))}
                         </div>
-                        <div className="flex flex-wrap gap-2">
-                            {props.tactics
-                                .filter(
-                                    ({ type }) => type === TacticTypeEnum.Hatch,
-                                )
-                                .map((hatch, index) => (
-                                    <Label
-                                        key={index}
-                                        className="bg-emerald-400/10 text-emerald-600 px-3 py-1 rounded-full text-sm"
-                                    >
-                                        {hatch.name}
-                                    </Label>
-                                ))}
+                        <div>
+                            <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                                Hatch
+                            </h3>
+                            <div className="flex flex-wrap gap-2">
+                                {props.tactics
+                                    .filter(
+                                        ({ type }) =>
+                                            type === TacticTypeEnum.Hatch,
+                                    )
+                                    .map((fly, index) => (
+                                        <Label
+                                            key={index}
+                                            className="bg-yellow-/10 text-yellow-600 px-3 py-1 rounded-full text-sm"
+                                        >
+                                            {fly.name}
+                                        </Label>
+                                    ))}
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div className="md:col-span-2">
-                    <Separator className="my-6" />
-                    <h3 className="text-xl font-semibold text-gray-800 mb-4">
-                        Fishing Strategy Summary
-                    </h3>
-                    <p className="text-gray-700 leading-relaxed">
-                        {props.summary}
-                    </p>
-                </div>
+            </div>
+            <div className="md:col-span-2">
+                <Separator className="my-6" />
+                <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                    Guide Advice:
+                </h3>
+                <p className="text-gray-700 leading-relaxed">{props.summary}</p>
             </div>
         </motion.div>
     )

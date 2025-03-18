@@ -27,13 +27,10 @@ export const generateTripDetails = async ({
         based on where they want to go to fly fishing. 
         You will do your best to provide helpful advice and suggestions for the trip.
         You will return your suggestions in structured JSON, using the specific inputs provided 
-        by the user to generate the trip details.`
+        by the user to generate the trip details.
 
-    const prompt = `I want to go to ${destinationName} and I want to go fly fishing.
-    I have ${headCount} people coming with me. I want to target ${species} fish species.
-    I want to go on a trip starting on ${startDate} and ending on ${endDate}.
     Please provide a detailed plan for the trip, including ALL of the following:
-    - A basic trip description.
+    - A basic trip description that respects the user inputs.
     - Up to three cities or towns that I should book accommodations in that would be a good base of operations for fishing.
     - a recommended city with a decent airport that I should fly in to to get to the area.
     - A list of up to 5 flies to try that are appropriate for the species, typical weather conditions, and time of year. 
@@ -50,7 +47,17 @@ export const generateTripDetails = async ({
     - A rudimentary packing list broken down into essentials, electronics, clothes, toiletries, and fishing-specific items as well as quantities. Up to 10 items per category.
     They should be organized as { name: [name of item] type: [type of item, IE Clothes, Electronics, etc.]. }
     - a list of up to 3 nearby fly fishing shops that are in the area with contact info, if you can find it.
+
+    INPUT:
     `
+
+    const prompt = JSON.stringify({
+        destinationName,
+        headCount,
+        startDate,
+        endDate,
+        species,
+    })
 
     const completion = await openai.beta.chat.completions.parse({
         model: 'grok-2',

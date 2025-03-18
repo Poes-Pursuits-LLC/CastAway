@@ -5,8 +5,8 @@ import { allSecrets } from './secret'
 export const orchestration = new sst.aws.Function('Orchestration', {
     handler: 'src/functions/orchestration.handler',
     link: [...allSecrets],
-    timeout: '5 minutes',
     url: true,
+    timeout: '10 minutes',
 })
 
 export const outputs = {

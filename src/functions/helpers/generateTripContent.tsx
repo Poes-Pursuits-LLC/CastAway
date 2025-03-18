@@ -6,7 +6,7 @@ import { tripTactics } from '~/core/fishing-tactics/tactic.sql'
 import { packingListItems } from '~/core/packing-list/packingListItem.sql'
 import { PackingListItemTypeEnum } from '~/core/packing-list/packListItem.model'
 import { trips } from '~/core/trip/trip.sql'
-import { handleAsync } from '~/lib/utils'
+import { handleAsync, resolvePromises } from '~/lib/utils'
 
 export const generateTripContent = orchestrationClient.createFunction(
     { id: 'generate.trip.content' },
@@ -17,52 +17,52 @@ export const generateTripContent = orchestrationClient.createFunction(
                 event.data,
             )}`,
         )
-        try {
-            const {
-                tripId,
-                destinationName,
-                headCount,
-                startDate,
-                endDate,
-                species,
-            } = event.data
 
-            const [tripDetails, generateTripDetailsError] = await step.run(
-                'generateTripDetails',
-                () =>
-                    handleAsync(
-                        xAiClient.generateTripDetails({
-                            destinationName,
-                            headCount,
-                            startDate,
-                            endDate,
-                            species,
-                        }),
-                    ),
+        const {
+            tripId,
+            destinationName,
+            headCount,
+            startDate,
+            endDate,
+            species,
+        } = event.data
+
+        const [tripDetails, generateTripDetailsError] = await step.run(
+            'generateTripDetails',
+            () =>
+                handleAsync(
+                    xAiClient.generateTripDetails({
+                        destinationName,
+                        headCount,
+                        startDate,
+                        endDate,
+                        species,
+                    }),
+                ),
+        )
+        if (generateTripDetailsError) {
+            console.error(
+                `❌ Error generating trip details: ${generateTripDetailsError.message}`,
             )
-            if (generateTripDetailsError) {
-                console.error(
-                    `❌ Error generating trip details: ${generateTripDetailsError.message}`,
-                )
-                throw new Error(generateTripDetailsError.message)
-            }
+            throw new Error(generateTripDetailsError.message)
+        }
 
-            const {
-                description,
-                airportCityRec,
-                cityRecOne,
-                cityRecTwo,
-                cityRecThree,
-                tactics,
-                tacticsSummary,
-                // flyShops,
-                packingList,
-            } = tripDetails!
-            console.info(JSON.stringify(tripDetails, null, 2))
+        const {
+            description,
+            airportCityRec,
+            cityRecOne,
+            cityRecTwo,
+            cityRecThree,
+            tactics,
+            tacticsSummary,
+            // flyShops,
+            packingList,
+        } = tripDetails!
 
-            await step.run('resolvePromises', () =>
-                Promise.all([
-                    db
+        await step.run('resolvePromises', () =>
+            resolvePromises([
+                {
+                    promise: db
                         .update(trips)
                         .set({
                             description,
@@ -73,27 +73,26 @@ export const generateTripContent = orchestrationClient.createFunction(
                             tacticsSummary,
                         })
                         .where(eq(trips.id, tripId)),
-
-                    db.insert(packingListItems).values(
+                },
+                {
+                    promise: db.insert(packingListItems).values(
                         packingList.map((item) => ({
                             ...item,
                             tripId,
                             type: item.type as PackingListItemTypeEnum,
                         })),
                     ),
-                    db.insert(tripTactics).values(
+                },
+                {
+                    promise: db.insert(tripTactics).values(
                         tactics.map((tactic) => ({
                             tripId,
                             ...tactic,
                         })),
                     ),
-                ]),
-            )
-            console.info('✅ Successfully generated trip content')
-        } catch (error) {
-            console.error(error)
-            throw new Error(error as string)
-        }
+                },
+            ]),
+        )
 
         return { status: 'success' }
     },

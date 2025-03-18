@@ -18,7 +18,6 @@ export const TripPage = async ({
 }) => {
     const { id } = await params
     const { trip } = await getTrip(id)
-    console.info(trip)
 
     return (
         <>
