@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import {
     Card,
@@ -48,7 +50,7 @@ const shopData: Shop[] = [
 
 const ShopsNearby: React.FC = () => {
     return (
-        <Card className="hover-lift bg-white/75 border shadow-lg backdrop-blur-md">
+        <Card className="hover-lift bg-white/50 border shadow-lg backdrop-blur-md">
             <CardHeader>
                 <CardTitle className="text-xl font-semibold">
                     Shops Nearby 🏤

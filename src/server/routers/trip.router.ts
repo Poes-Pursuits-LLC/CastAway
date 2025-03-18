@@ -3,10 +3,52 @@ import { z } from 'zod'
 import { db } from '~/clients/db.client'
 import { orchestrationClient } from '~/clients/orchestration.client'
 import { trips } from '~/core/trip/trip.sql'
-import { handleAsync } from '~/lib/utils'
+import { handleAsync, resolvePromises } from '~/lib/utils'
 import { createTRPCRouter, publicProcedure } from '~/server/_internals/trpc'
+import { eq } from 'drizzle-orm'
+import { packingListItems } from '~/core/packing-list/packingListItem.sql'
+import { tripTactics } from '~/core/fishing-tactics/tactic.sql'
 
 export const tripRouter = createTRPCRouter({
+    getTrip: publicProcedure
+        .input(z.object({ id: z.number() }))
+        .query(async ({ input }) => {
+            console.info(
+                `Invoked tripRouter.getTrip with inputs: ${JSON.stringify(
+                    input,
+                )}`,
+            )
+
+            const { id } = input
+
+            const {
+                results: [trip, packingList, tactics],
+            } = await resolvePromises([
+                { promise: db.select().from(trips).where(eq(trips.id, id)) },
+                {
+                    promise: db
+                        .select()
+                        .from(packingListItems)
+                        .where(eq(packingListItems.tripId, id)),
+                },
+                {
+                    promise: db
+                        .select()
+                        .from(tripTactics)
+                        .where(eq(tripTactics.tripId, id)),
+                },
+            ])
+
+            return {
+                data: {
+                    trip: {
+                        ...trip![0]!,
+                        packingList: packingList!,
+                        tactics: tactics!,
+                    },
+                },
+            }
+        }),
     submitTrip: publicProcedure
         .input(
             z.object({

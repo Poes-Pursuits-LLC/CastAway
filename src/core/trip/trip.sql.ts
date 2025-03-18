@@ -7,9 +7,11 @@ export const trips = pgTable('trips', {
     destinationId: integer('destination_id').references(() => destinations.id),
     description: text('description'),
     headCount: integer('head_count'),
+    airportCityRec: text('airport_city_rec'),
     cityRecOne: text('city_rec_one'),
     cityRecTwo: text('city_rec_two'),
     cityRecThree: text('city_rec_three'),
+    tacticsSummary: text('tactics_summary'),
     startDate: timestamp('start_date'),
     endDate: timestamp('end_date'),
     createdAt: timestamp('created_at')
