@@ -12,6 +12,12 @@ push:
 pull:
 	npx sst shell drizzle-kit pull
 
+migrate-generate:
+	npx sst shell drizzle-kit generate
+
+migrate-apply:
+	npx sst shell drizzle-kit migrate
+
 # CICD
 deploy:
 	npx sst deploy --stage production --verbose

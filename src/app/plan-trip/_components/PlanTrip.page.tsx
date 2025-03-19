@@ -1,7 +1,13 @@
 import { PlanTripAsync } from './PlanTrip.async'
 import { MapPin, Navigation, Fish, Plane, Backpack, House } from 'lucide-react'
 
-export const PlanTripPage = () => {
+export const PlanTripPage = async ({
+    searchParams,
+}: {
+    searchParams: Promise<{ location: string | undefined }>
+}) => {
+    const initialDestination = (await searchParams).location ?? null
+
     return (
         <div className="min-h-screen pt-24 pb-16 px-4 bg-gray-100">
             <div className="max-w-4xl mx-auto relative">
@@ -67,8 +73,10 @@ export const PlanTripPage = () => {
                 </div>
 
                 <div className="backdrop-blur-md bg-white/75 rounded-xl overflow-hidden border shadow-lg">
-                    <div className="p-6 md:p-10">
-                        <PlanTripAsync />
+                    <div className="flex flex-col gap-8 p-6 md:p-10">
+                        <PlanTripAsync
+                            initialDestination={initialDestination}
+                        />
                     </div>
                 </div>
             </div>

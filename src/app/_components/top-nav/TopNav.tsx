@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 import React, { useRef, useState } from 'react'
-import { Calendar, Compass, MapPin } from 'lucide-react'
+import { Calendar, CircleHelp, MapPin } from 'lucide-react'
 import { MobileNav } from './TopNav.mobile'
 import { DesktopNav } from './TopNav.desktop'
 
@@ -10,17 +10,20 @@ const navItems = [
     {
         name: 'Destinations',
         icon: <MapPin className="w-4 h-4 mr-2" />,
-        link: '/#features',
+        scrollTo: 'destinations',
+        link: null,
     },
     {
-        name: 'Trips',
+        name: 'My Trips',
         icon: <Calendar className="w-4 h-4 mr-2" />,
-        link: '/#empowerment',
+        scrollTo: null,
+        link: '/login',
     },
     {
-        name: 'Explore',
-        icon: <Compass className="w-4 h-4 mr-2" />,
-        link: '/#pricing',
+        name: 'FAQ',
+        icon: <CircleHelp className="w-4 h-4 mr-2" />,
+        scrollTo: 'faq',
+        link: null,
     },
 ]
 

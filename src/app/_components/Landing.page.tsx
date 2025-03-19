@@ -2,7 +2,7 @@ import CTA from './CTA'
 import FAQ from './FAQ'
 import Footer from './Footer'
 import Hero from './Hero'
-import Locations from './Locations'
+import Destinations from './destinations/Destinations'
 import { TopNav } from './top-nav/TopNav'
 
 export const LandingPage = () => {
@@ -11,7 +11,7 @@ export const LandingPage = () => {
             <TopNav />
             <Hero />
             <div id="main-content container mx-auto px-4 py-12">
-                <Locations />
+                <Destinations />
                 <FAQ />
                 <CTA />
                 <Footer />

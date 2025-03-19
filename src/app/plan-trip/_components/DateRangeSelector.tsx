@@ -27,7 +27,7 @@ const DateRangeSelector = ({
                     <Button
                         variant={'outline'}
                         className={cn(
-                            'w-full justify-start text-left font-normal h-12 bg-gray-100 border text-gray-800 hover:bg-white/70 shadow-sm',
+                            'w-full justify-start text-left font-normal h-12 bg-gray-100 border text-gray-800 shadow-sm',
                             !dateRange?.from && 'text-gray-500',
                         )}
                     >
@@ -59,12 +59,12 @@ const DateRangeSelector = ({
                         disabled={(date) => date < new Date()}
                         classNames={{
                             day_selected:
-                                'bg-[#0EA5E9] hover:bg-[#0EA5E9] hover:text-white',
-                            day_range_middle: 'bg-[#0EA5E9]/20 text-gray-800',
+                                'bg-gray-900 hover:bg-gray-800 text-white',
+                            day_range_middle: 'bg-gray-100 text-gray-900',
                             day_range_end:
-                                'bg-[#0EA5E9] text-white hover:bg-[#0EA5E9] hover:text-white',
+                                'bg-gray-900 text-white hover:bg-gray-800',
                             day_range_start:
-                                'bg-[#0EA5E9] text-white hover:bg-[#0EA5E9] hover:text-white',
+                                'bg-gray-900 text-white hover:bg-gray-800',
                         }}
                     />
                 </PopoverContent>

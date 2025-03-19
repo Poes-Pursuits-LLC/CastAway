@@ -4,15 +4,10 @@ import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { Button } from '@ui/button'
 import Image from 'next/image'
+import { scrollToContent } from '~/lib/utils'
+import Link from 'next/link'
 
 const Hero = () => {
-    const scrollToContent = () => {
-        const contentElement = document.getElementById('destinations')
-        if (contentElement) {
-            contentElement.scrollIntoView({ behavior: 'smooth' })
-        }
-    }
-
     return (
         <div className="relative h-screen w-full overflow-hidden">
             <div className="absolute inset-0 z-0">
@@ -66,16 +61,20 @@ const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.6 }}
                     className="flex flex-col sm:flex-row gap-4"
                 >
-                    <Button
-                        size="lg"
-                        className="rounded-full px-8 bg-white text-gray-900 hover:bg-white/90"
-                    >
-                        Start Planning
-                    </Button>
+                    <Link href="/plan-trip">
+                        <Button
+                            size="lg"
+                            variant="outline"
+                            className="rounded-full px-8 text-white bg-white/20"
+                        >
+                            Start Planning
+                        </Button>
+                    </Link>
                     <Button
                         size="lg"
                         variant="outline"
-                        className="rounded-full px-8 border-white/70 text-white hover:bg-white/20"
+                        className="rounded-full px-8 text-white bg-white/20"
+                        onClick={() => scrollToContent('destinations')}
                     >
                         Explore Destinations
                     </Button>
@@ -89,7 +88,7 @@ const Hero = () => {
                 className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10"
             >
                 <motion.button
-                    onClick={scrollToContent}
+                    onClick={() => scrollToContent('destinations')}
                     className="text-white/80 hover:text-white focus:outline-none transition-colors"
                     animate={{ y: [0, 10, 0] }}
                     transition={{ repeat: Infinity, duration: 2 }}

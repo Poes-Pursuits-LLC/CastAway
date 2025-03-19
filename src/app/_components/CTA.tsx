@@ -27,7 +27,7 @@ const CallToAction = () => {
 
                     <div className="flex flex-col sm:flex-row justify-center gap-4 items-center">
                         <Link href="/plan-trip">
-                            <Button className="bg-[#0EA5E9] hover:bg-[#0EA5E9]/90 text-white px-8 py-6 h-auto text-lg">
+                            <Button className="bg-teal-500 hover:bg-[#0EA5E9]/90 text-white px-8 py-6 h-auto text-lg">
                                 Plan your first trip
                                 <ArrowRight className="ml-2 h-5 w-5" />
                             </Button>

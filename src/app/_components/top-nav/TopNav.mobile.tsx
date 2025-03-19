@@ -1,33 +1,16 @@
 import { useState } from 'react'
 import { Logo } from '../Logo'
-import { Calendar, Compass, MapPin, MenuIcon, XIcon } from 'lucide-react'
+import { MenuIcon, XIcon } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '~/lib/utils'
 import { Button } from '@ui/button'
 import Link from 'next/link'
 
-const navItems = [
-    {
-        name: 'Destinations',
-        icon: <MapPin className="w-4 h-4 mr-2" />,
-        link: '/#features',
-    },
-    {
-        name: 'Trips',
-        icon: <Calendar className="w-4 h-4 mr-2" />,
-        link: '/#empowerment',
-    },
-    {
-        name: 'Explore',
-        icon: <Compass className="w-4 h-4 mr-2" />,
-        link: '/#pricing',
-    },
-]
-
 export const MobileNav = (props: {
     navItems: {
         name: string
-        link: string
+        link: string | null
+        scrollTo: string | null
     }[]
     visible: boolean
 }) => {
@@ -82,28 +65,27 @@ export const MobileNav = (props: {
                             exit={{ opacity: 0 }}
                             className="flex rounded-lg absolute top-16 bg-white dark:bg-neutral-950 inset-x-0 z-50 flex-col items-start justify-start gap-4 w-full px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
                         >
-                            {navItems.map(
-                                (
-                                    navItem: { name: string; link: string },
-                                    idx: number,
-                                ) => (
-                                    <Link
-                                        key={`link=${idx}`}
-                                        href={navItem.link}
-                                        onClick={() => setOpen(false)}
-                                        className="relative text-neutral-600 dark:text-neutral-300"
-                                    >
-                                        <motion.span className="block">
-                                            {navItem.name}{' '}
-                                        </motion.span>
-                                    </Link>
-                                ),
-                            )}
+                            {props.navItems.map((navItem, idx: number) => (
+                                <Link
+                                    key={`link=${idx}`}
+                                    href={
+                                        navItem.scrollTo
+                                            ? `/#${navItem.scrollTo}`
+                                            : navItem.link!
+                                    }
+                                    onClick={() => setOpen(false)}
+                                    className="relative text-neutral-600 dark:text-neutral-300"
+                                >
+                                    <motion.span className="block">
+                                        {navItem.name}{' '}
+                                    </motion.span>
+                                </Link>
+                            ))}
                             <Button
                                 onClick={() => setOpen(false)}
-                                className="block md:hidden w-full"
+                                className="block md:hidden w-full bg-white"
                             >
-                                Claim Free Stories
+                                Sign up
                             </Button>
                         </motion.div>
                     )}

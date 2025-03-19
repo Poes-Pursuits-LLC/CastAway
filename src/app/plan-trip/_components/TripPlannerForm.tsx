@@ -36,11 +36,14 @@ export const formSchema = z.object({
 
 export type TripFormValues = z.infer<typeof formSchema>
 
-const TripPlannerForm = (props: Readonly<{ destinations: Destination[] }>) => {
-    // State
+const TripPlannerForm = (
+    props: Readonly<{
+        initialDestination: string | null
+        destinations: Destination[]
+    }>,
+) => {
     const [dateRange, setDateRange] = useState<DateRange | undefined>({
         from: new Date(),
-        // one week from now
         to: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     })
     const [tripId, setTripId] = useState<number | null>(null)
@@ -49,6 +52,7 @@ const TripPlannerForm = (props: Readonly<{ destinations: Destination[] }>) => {
         resolver: zodResolver(formSchema),
         defaultValues: {
             headCount: 2,
+            locationId: props.initialDestination ?? '',
         },
     })
 
@@ -76,30 +80,31 @@ const TripPlannerForm = (props: Readonly<{ destinations: Destination[] }>) => {
             {tripId ? (
                 <LoadingProgress tripId={tripId ?? 0} />
             ) : (
-                <Form {...form}>
-                    <form
-                        onSubmit={form.handleSubmit(onSubmit)}
-                        className="space-y-6"
-                    >
-                        <LocationSelector
-                            control={form.control}
-                            destinations={props.destinations}
-                        />
-                        <TravelersInput control={form.control} />
-                        <SpeciesSelector control={form.control} />
-                        <DateRangeSelector
-                            dateRange={dateRange}
-                            setDateRange={setDateRange}
-                        />
-
-                        <Button
-                            type="submit"
-                            className="w-full h-12 mt-4 bg-gradient-to-r from-[#0EA5E9] to-[#10B981] text-white"
+                <>
+                    <Form {...form}>
+                        <form
+                            onSubmit={form.handleSubmit(onSubmit)}
+                            className="space-y-6"
                         >
-                            Design My Trip
-                        </Button>
-                    </form>
-                </Form>
+                            <LocationSelector
+                                control={form.control}
+                                destinations={props.destinations}
+                            />
+                            <TravelersInput control={form.control} />
+                            <SpeciesSelector control={form.control} />
+                            <DateRangeSelector
+                                dateRange={dateRange}
+                                setDateRange={setDateRange}
+                            />
+                            <Button
+                                type="submit"
+                                className="w-full h-12 mt-4 bg-gradient-to-r from-[#0EA5E9] to-[#10B981] text-white"
+                            >
+                                Design My Trip
+                            </Button>
+                        </form>
+                    </Form>
+                </>
             )}
         </>
     )

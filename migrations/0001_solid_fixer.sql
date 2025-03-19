@@ -1,0 +1,1 @@
+ALTER TABLE "destinations" RENAME COLUMN "state" TO "province";

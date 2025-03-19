@@ -30,6 +30,9 @@ const LocationSelector = (props: {
     control: Control<TripFormValues>
     destinations: Readonly<Destination[]>
 }) => {
+    // State
+    const sortedDestinations = props.destinations.slice().sort()
+
     return (
         <FormField
             control={props.control}
@@ -52,20 +55,25 @@ const LocationSelector = (props: {
                             </SelectTrigger>
                         </FormControl>
                         <SelectContent className="bg-white border-white/30 text-gray-800">
-                            {props.destinations.map((destination) => (
-                                <SelectItem
-                                    key={destination.id}
-                                    value={destination.id.toString()}
-                                    className="focus:bg-#0EA5E9/10 focus:text-gray-900"
-                                >
-                                    <div className="flex items-center">
-                                        <span>
-                                            {destination.name},{' '}
-                                            {destination.country}
-                                        </span>
-                                    </div>
-                                </SelectItem>
-                            ))}
+                            {sortedDestinations
+                                .sort((a, b) =>
+                                    a.province.localeCompare(b.province),
+                                )
+                                .map((destination) => (
+                                    <SelectItem
+                                        key={destination.id}
+                                        value={destination.id.toString()}
+                                        className="focus:bg-#0EA5E9/10 focus:text-gray-900"
+                                    >
+                                        <div className="flex items-center">
+                                            <span>
+                                                {destination.name},{' '}
+                                                {destination.province},{' '}
+                                                {destination.country}
+                                            </span>
+                                        </div>
+                                    </SelectItem>
+                                ))}
                         </SelectContent>
                     </Select>
                     <FormDescription className="text-gray-700">

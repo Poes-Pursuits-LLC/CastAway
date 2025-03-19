@@ -5,6 +5,13 @@ export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs))
 }
 
+export const scrollToContent = (elementId: string) => {
+    const contentElement = document.getElementById(elementId)
+    if (contentElement) {
+        contentElement.scrollIntoView({ behavior: 'smooth' })
+    }
+}
+
 export const handleAsync = async <T>(
     fn: Promise<T>,
 ): Promise<[T | null, null | Error]> => {

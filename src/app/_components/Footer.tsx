@@ -1,10 +1,4 @@
-import {
-    Facebook,
-    Instagram,
-    Twitter,
-    Youtube,
-    ChevronRight,
-} from 'lucide-react'
+import { Facebook, Instagram, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '~/ui/button'
 import { Separator } from '~/ui/separator'
@@ -26,8 +20,7 @@ const Footer = () => {
                             around the world.
                         </p>
                         <p className="text-sm text-gray-600 mt-4">
-                            &copy; {currentYear} CastAway Inc. All rights
-                            reserved.
+                            &copy; {currentYear} Roam.fish. All rights reserved.
                         </p>
                     </div>
 
@@ -52,22 +45,6 @@ const Footer = () => {
                             >
                                 <Instagram className="h-5 w-5" />
                                 <span className="sr-only">Instagram</span>
-                            </Button>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="rounded-full h-9 w-9 text-[#0EA5E9] hover:bg-[#0EA5E9]/10"
-                            >
-                                <Twitter className="h-5 w-5" />
-                                <span className="sr-only">Twitter</span>
-                            </Button>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="rounded-full h-9 w-9 text-[#0EA5E9] hover:bg-[#0EA5E9]/10"
-                            >
-                                <Youtube className="h-5 w-5" />
-                                <span className="sr-only">YouTube</span>
                             </Button>
                         </div>
                     </div>
@@ -105,15 +82,6 @@ const Footer = () => {
                                     <span>Privacy Policy</span>
                                 </Link>
                             </li>
-                            <li>
-                                <Link
-                                    href="/contact"
-                                    className="text-gray-600 hover:text-[#0EA5E9] flex items-center gap-1"
-                                >
-                                    <ChevronRight className="h-3 w-3" />
-                                    <span>Contact Us</span>
-                                </Link>
-                            </li>
                         </ul>
                     </div>
 
@@ -129,12 +97,12 @@ const Footer = () => {
                                     className="text-gray-600 hover:text-[#0EA5E9] flex items-center gap-1"
                                 >
                                     <ChevronRight className="h-3 w-3" />
-                                    <span>Plan Your Trip</span>
+                                    <span>Start Planning</span>
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    href="/signup"
+                                    href="/login"
                                     className="text-gray-600 hover:text-[#0EA5E9] flex items-center gap-1"
                                 >
                                     <ChevronRight className="h-3 w-3" />
@@ -150,20 +118,11 @@ const Footer = () => {
                                     <span>Sign In</span>
                                 </Link>
                             </li>
-                            <li>
-                                <Link
-                                    href="/destinations"
-                                    className="text-gray-600 hover:text-[#0EA5E9] flex items-center gap-1"
-                                >
-                                    <ChevronRight className="h-3 w-3" />
-                                    <span>Explore Destinations</span>
-                                </Link>
-                            </li>
                         </ul>
                     </div>
                 </div>
 
-                <Separator className="my-6 bg-gray-200" />
+                <Separator className="my-6 bg-gray-600" />
 
                 <div className="text-center text-sm text-gray-500">
                     <p>

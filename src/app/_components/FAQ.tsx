@@ -22,14 +22,18 @@ const faqs: FAQItem[] = [
         answer: 'Yellow Dog is an amazing service and everyone should use them. That being said, they tend to focus on expensive, all-inclusive lodge experiences which may have 3-day minimums. Roam, on the other hand, gives you immediate information as a starting point as well as tools to plan your trip, filling the niche for your DIY and budget-friendly trips.',
     },
     {
+        question: 'I made my first trip. Now what?',
+        answer: 'Once you have made your free trip, you can sign up to create unlimited trips, save them, and use our trip management tools.',
+    },
+    {
         question: 'How much does it cost?',
-        answer: 'Roam is free to use, and you can plan your first trip without even signing up. You can sign up to save your trips and plan them without hassle, using our trip pages to manage your trips. A fully optional paid plan will be available to unlock advanced features, but the core app will be free forever',
+        answer: 'Roam is completely free to use. A fully optional paid plan will be available to unlock advanced features.',
     },
 ]
 
 const FAQs = () => {
     return (
-        <section className="w-full py-12 md:py-16">
+        <section id="faq" className="w-full py-12 md:py-16">
             <div className="container px-4 md:px-6 mx-auto">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
                     <div className="inline-block p-2 bg-gradient-to-r from-[#0EA5E9]/20 to-[#10B981]/20 rounded-full">

@@ -9,7 +9,8 @@ import { useRouter } from 'next/navigation'
 export const DesktopNav = (props: {
     navItems: {
         name: string
-        link: string
+        link: string | null
+        scrollTo: string | null
         icon: React.JSX.Element
     }[]
     visible: boolean
@@ -52,7 +53,11 @@ export const DesktopNav = (props: {
                         onMouseEnter={() => setHovered(idx)}
                         className="text-neutral-600 dark:text-neutral-300 relative px-4 py-2"
                         key={`link=${idx}`}
-                        href={navItem.link}
+                        href={
+                            navItem.scrollTo
+                                ? `/#${navItem.scrollTo}`
+                                : navItem.link!
+                        }
                     >
                         {hovered === idx && (
                             <motion.div
