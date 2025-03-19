@@ -1,7 +1,7 @@
 'use client'
 
 import { MapPin, Search } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Destination } from '~/core/destination/destination.model'
 import { Input } from '~/ui/input'
 import Image from 'next/image'
@@ -17,10 +17,10 @@ export const DestinationGridView = (
 ) => {
     // State
     const localDestinations = props.destinations
-    const selectRandomDestinations = () => {
+    const selectRandomDestinations = useCallback(() => {
         const shuffled = [...props.destinations].sort(() => 0.5 - Math.random())
         return shuffled.slice(0, 6)
-    }
+    }, [props.destinations])
     const [searchTerm, setSearchTerm] = useState('')
     const [selectedLocation, setSelectedLocation] =
         useState<Destination | null>(null)
@@ -49,7 +49,7 @@ export const DestinationGridView = (
         } else {
             setRandomDisplayDestinations(selectRandomDestinations())
         }
-    }, [searchTerm, localDestinations])
+    }, [searchTerm, localDestinations, selectRandomDestinations])
 
     const handleLocationSelect = (destination: Destination) => {
         setSelectedLocation(destination)
