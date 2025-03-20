@@ -49,7 +49,7 @@ export const DestinationGridView = (
                 .slice(0, 6)
             setRandomDisplayDestinations(initialDestinations)
         }
-    }, [searchTerm, localDestinations, props.destinations])
+    }, [searchTerm])
 
     const handleLocationSelect = (destination: Destination) => {
         setSelectedLocation(destination)
