@@ -15,6 +15,7 @@ import { TravelersInput } from './TravellerInput'
 import { z } from 'zod'
 import { Destination } from '~/core/destination/destination.model'
 import { LoadingProgress } from './LoadingProgress'
+import { Loader2 } from 'lucide-react'
 
 export const formSchema = z.object({
     locationId: z.string({
@@ -42,6 +43,7 @@ const TripPlannerForm = (
         destinations: Destination[]
     }>,
 ) => {
+    const [isLoading, setIsLoading] = useState(false)
     const [dateRange, setDateRange] = useState<DateRange | undefined>({
         from: new Date(),
         to: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
@@ -57,6 +59,7 @@ const TripPlannerForm = (
     })
 
     const onSubmit = async (values: TripFormValues) => {
+        setIsLoading(true)
         if (!dateRange?.from) {
             toast.error('Please select travel dates')
             return
@@ -99,8 +102,12 @@ const TripPlannerForm = (
                             <Button
                                 type="submit"
                                 className="w-full h-12 mt-4 bg-gradient-to-r from-[#0EA5E9] to-[#10B981] text-white"
+                                disabled={isLoading}
                             >
-                                Design My Trip
+                                {isLoading && (
+                                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                )}
+                                Plan My Trip
                             </Button>
                         </form>
                     </Form>

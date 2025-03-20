@@ -18,6 +18,9 @@ migrate-generate:
 migrate-apply:
 	npx sst shell drizzle-kit migrate
 
+seed:
+	npx sst shell tsx ops/seed.ts
+
 # CICD
 deploy:
 	npx sst deploy --stage production --verbose

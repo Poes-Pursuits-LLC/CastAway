@@ -3,6 +3,7 @@ import { Input } from '@ui/input'
 import { Skeleton } from '@ui/skeleton'
 
 const DestinationSkeleton = ({ count = 6 }: { count?: number }) => {
+    console.info('I am the skeleton and I am rendering!')
     const skeletonCards = Array.from({ length: count }, (_, i) => i)
 
     return (
