@@ -15,9 +15,8 @@ const Footer = () => {
                     <div className="flex flex-col">
                         <Logo />
                         <p className="text-sm text-gray-600 max-w-xs">
-                            Your premier destination for expertly guided fly
-                            fishing adventures in the most beautiful waters
-                            around the world.
+                            The premier DIY and budget fly fishing travel
+                            planner.
                         </p>
                         <p className="text-sm text-gray-600 mt-4">
                             &copy; {currentYear} Roam.fish. All rights reserved.
@@ -55,7 +54,7 @@ const Footer = () => {
                             Company
                         </h3>
                         <ul className="space-y-2">
-                            <li>
+                            {/* <li>
                                 <Link
                                     href="/about"
                                     className="text-gray-600 hover:text-[#0EA5E9] flex items-center gap-1"
@@ -63,7 +62,7 @@ const Footer = () => {
                                     <ChevronRight className="h-3 w-3" />
                                     <span>About Us</span>
                                 </Link>
-                            </li>
+                            </li> */}
                             <li>
                                 <Link
                                     href="/terms"

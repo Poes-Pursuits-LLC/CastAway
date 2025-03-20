@@ -49,7 +49,7 @@ const LocationSelector = (props: {
                         <FormControl>
                             <SelectTrigger className="h-12 bg-gray-100 border text-gray-800 focus:ring-#0EA5E9 shadow-sm">
                                 <div className="flex gap-2">
-                                    <MapPin className="h-4 w-4" />
+                                    <MapPin className="h-4 w-4 text-[#0EA5E9]" />
                                     <SelectValue placeholder="Select a fishing destination" />
                                 </div>
                             </SelectTrigger>
@@ -63,7 +63,7 @@ const LocationSelector = (props: {
                                     <SelectItem
                                         key={destination.id}
                                         value={destination.id.toString()}
-                                        className="focus:bg-#0EA5E9/10 focus:text-gray-900"
+                                        className="focus:bg-#0EA5E9/10 focus:text-gray-900 hover:bg-gray-200"
                                     >
                                         <div className="flex items-center">
                                             <span>

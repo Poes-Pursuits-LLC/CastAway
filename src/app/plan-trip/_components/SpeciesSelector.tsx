@@ -40,7 +40,7 @@ const FishTypeSelector = (
                             <SelectTrigger className="h-12 bg-gray-100 border text-gray-800 focus:ring-#0EA5E9 shadow-sm">
                                 <SelectValue placeholder="Select target fish species">
                                     <div className="flex items-center">
-                                        <Fish className="mr-2 h-4 w-4 text-#0EA5E9" />
+                                        <Fish className="mr-2 h-4 w-4 text-[#0EA5E9]" />
                                         <span>{field.value}</span>
                                     </div>
                                 </SelectValue>

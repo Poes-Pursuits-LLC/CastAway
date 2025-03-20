@@ -47,7 +47,7 @@ export const DesktopNav = (props: {
             <div className="flex gap-x-4 justify-center items-center">
                 <Logo />
             </div>
-            <motion.div className="lg:flex flex-row flex-1 absolute inset-0 hidden items-center justify-center space-x-2 lg:space-x-2 text-sm text-zinc-600 font-medium hover:text-zinc-800 transition duration-200">
+            <motion.div className="lg:flex flex-row flex-1 items-center justify-center space-x-2 lg:space-x-2 text-sm text-zinc-600 font-medium hover:text-zinc-800 transition duration-200">
                 {props.navItems.map((navItem, idx: number) => (
                     <Link
                         onMouseEnter={() => setHovered(idx)}
@@ -94,16 +94,15 @@ export const DesktopNav = (props: {
                     />
                 )}
             </AnimatePresence>
-            <Link href="/login">
-                <Button
-                    variant="default"
-                    onClick={() => router.push('/login')}
-                    size="sm"
-                    className="justify-start bg-gradient-to-r from-[#0EA5E9] to-[#10B981] pointer"
-                >
-                    Sign In/Up
-                </Button>
-            </Link>
+            <Button
+                id="lol"
+                variant="default"
+                onClick={() => router.push('/login')}
+                size="sm"
+                className="justify-start bg-gradient-to-r from-[#0EA5E9] to-[#10B981] cursor-pointer hover:bg-gradient-to-r"
+            >
+                Sign In/Up
+            </Button>
         </motion.div>
     )
 }

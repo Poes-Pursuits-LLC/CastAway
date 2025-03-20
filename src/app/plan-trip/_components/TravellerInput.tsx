@@ -25,7 +25,7 @@ export const TravelersInput = (
                     </FormLabel>
                     <FormControl>
                         <div className="relative">
-                            <Users className="absolute left-3 top-3 h-4 w-4 text-#0EA5E9" />
+                            <Users className="absolute left-3 top-3 h-4 w-4 text-[#0EA5E9]" />
                             <Input
                                 type="number"
                                 placeholder="Enter number of travelers"
