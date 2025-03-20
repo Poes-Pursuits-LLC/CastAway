@@ -1,3 +1,4 @@
+import { cn } from '~/lib/utils'
 import { PlanTripAsync } from './PlanTrip.async'
 import { MapPin, Navigation, Fish, Plane, Backpack, House } from 'lucide-react'
 
@@ -9,7 +10,14 @@ export const PlanTripPage = async ({
     const initialDestination = (await searchParams).location ?? null
 
     return (
-        <div className="min-h-screen pt-24 pb-16 px-4 bg-gray-100">
+        <div className="relative min-h-screen pt-24 pb-16 px-4 bg-gray-200 bg-dot-black/[0.2]">
+            <div
+                className={cn(
+                    'absolute inset-0',
+                    '[background-size:20px_20px]',
+                    '[background-image:radial-gradient(#d4d4d4_1.5px,transparent_1.5px)]',
+                )}
+            />
             <div className="max-w-4xl mx-auto relative">
                 <div className="text-center mb-12">
                     <h1 className="text-4xl sm:text-5xl font-display font-bold mb-4 text-gray-900">

@@ -22,15 +22,16 @@ export const TripPage = async ({
     return (
         <>
             {/* <SignupBanner /> */}
-            <div className="relative min-h-screen pt-24 pb-16 px-4 bg-gray-200 bg-dot-black/[0.2]">
+            <div className="relative min-h-screen pt-24 pb-16 px-4 bg-gray-200">
                 <div
                     className={cn(
                         'absolute inset-0',
                         '[background-size:20px_20px]',
-                        '[background-image:radial-gradient(#d4d4d4_1px,transparent_1px)]',
+                        '[background-image:radial-gradient(#d4d4d4_1.5px,transparent_1.5px)]',
                     )}
                 />
-                <div className="max-w-6xl mx-auto relative">
+                {/* Content container */}
+                <div className="max-w-6xl mx-auto relative z-10">
                     <TripIntroduction description={trip.description!} />
                     <div className="flex flex-col lg:flex-row gap-8">
                         <div className="flex-grow relative z-10">
