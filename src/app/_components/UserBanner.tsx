@@ -5,7 +5,7 @@ import { Button } from '~/ui/button'
 import { useRouter } from 'next/navigation'
 import { cn } from '~/lib/utils'
 
-export const UserBanner = (props: { maxTripsPlanned: boolean }) => {
+export const UserBanner = (props: { maxTripsPlanned?: boolean }) => {
     const router = useRouter()
 
     return (
