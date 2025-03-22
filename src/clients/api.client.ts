@@ -1,30 +1,22 @@
 import 'server-only'
+import { createTRPCClient, httpBatchLink } from '@trpc/client'
+import SuperJSON from 'superjson'
+import type { AppRouter } from '@server/root'
+import { currentUser } from '@clerk/nextjs/server'
 
-import { createHydrationHelpers } from '@trpc/react-query/rsc'
-import { headers } from 'next/headers'
-import { cache } from 'react'
-
-import { createCaller, type AppRouter } from '@server/root'
-import { createTRPCContext } from '@server/_internals/trpc'
-import { createQueryClient } from '@server/trpc/query-client'
-
-/**
- * This wraps the `createTRPCContext` helper and provides the required context for the tRPC API when
- * handling a tRPC call from a React Server Component.
- */
-const createContext = cache(async () => {
-    const heads = new Headers(await headers())
-    heads.set('x-trpc-source', 'rsc')
-
-    return createTRPCContext({
-        headers: heads,
-    })
+const api = createTRPCClient<AppRouter>({
+    links: [
+        httpBatchLink({
+            url: process.env.NEXT_PUBLIC_SERVER_URL!,
+            transformer: SuperJSON,
+            async headers() {
+                const user = await currentUser()
+                return {
+                    'x-userid': user?.id ?? '',
+                }
+            },
+        }),
+    ],
 })
 
-const getQueryClient = cache(createQueryClient)
-const caller = createCaller(createContext)
-
-export const { trpc: api, HydrateClient } = createHydrationHelpers<AppRouter>(
-    caller,
-    getQueryClient,
-)
+export { api }

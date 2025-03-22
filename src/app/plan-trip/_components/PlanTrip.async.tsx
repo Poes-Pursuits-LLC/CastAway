@@ -1,10 +1,9 @@
 import { getDestinations } from '../../data'
 import TripPlannerForm from './TripPlannerForm'
 
-export const PlanTripAsync = async ({
-    initialDestination,
-}: {
+export const PlanTripAsync = async (props: {
     initialDestination: string | null
+    maxTripsPlanned: boolean
 }) => {
     // *Data
     const { destinations } = await getDestinations()
@@ -13,8 +12,10 @@ export const PlanTripAsync = async ({
     const destinationIdSet = new Set(
         destinations.map(({ id }) => id.toString()),
     )
-    const initialDestinationId = destinationIdSet.has(initialDestination ?? '')
-        ? initialDestination
+    const initialDestinationId = destinationIdSet.has(
+        props.initialDestination ?? '',
+    )
+        ? props.initialDestination
         : null
 
     // *Render
@@ -22,6 +23,7 @@ export const PlanTripAsync = async ({
         <TripPlannerForm
             destinations={destinations}
             initialDestination={initialDestinationId}
+            maxTripsPlanned={props.maxTripsPlanned}
         />
     )
 }

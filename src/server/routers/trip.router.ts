@@ -2,12 +2,17 @@ import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 import { db } from '~/clients/db.client'
 import { orchestrationClient } from '~/clients/orchestration.client'
-import { trips } from '~/core/trip/trip.sql'
+import { trips as tripsTable } from '~/core/trip/trip.sql'
 import { handleAsync, resolvePromises } from '~/lib/utils'
-import { createTRPCRouter, publicProcedure } from '~/server/_internals/trpc'
+import {
+    createTRPCRouter,
+    protectedProcedure,
+    publicProcedure,
+} from '~/server/_internals/trpc'
 import { eq } from 'drizzle-orm'
 import { packingListItems } from '~/core/packing-list/packingListItem.sql'
 import { tripTactics } from '~/core/fishing-tactics/tactic.sql'
+import { destinations } from '~/core/destination/destination.sql'
 
 export const tripRouter = createTRPCRouter({
     getTrip: publicProcedure
@@ -24,7 +29,12 @@ export const tripRouter = createTRPCRouter({
             const {
                 results: [trip, packingList, tactics],
             } = await resolvePromises([
-                { promise: db.select().from(trips).where(eq(trips.id, id)) },
+                {
+                    promise: db
+                        .select()
+                        .from(tripsTable)
+                        .where(eq(tripsTable.id, id)),
+                },
                 {
                     promise: db
                         .select()
@@ -49,6 +59,55 @@ export const tripRouter = createTRPCRouter({
                 },
             }
         }),
+    getTrips: protectedProcedure
+        .input(
+            z.object({
+                limit: z.number(),
+                offset: z.number(),
+            }),
+        )
+        .query(async ({ input, ctx }) => {
+            console.info(
+                `Invoked tripRouter.submitTrip with inputs: ${JSON.stringify(
+                    input,
+                )} and userId ${ctx.userId}`,
+            )
+
+            const { limit, offset } = input
+
+            const [trips, getTripsError] = await handleAsync(
+                db
+                    .select({
+                        destinationImageUrl: destinations.imageUrl,
+                        destinationName: destinations.name,
+                        tripId: tripsTable.id,
+                        startDate: tripsTable.startDate,
+                    })
+                    .from(tripsTable)
+                    .innerJoin(
+                        destinations,
+                        eq(tripsTable.destinationId, destinations.id),
+                    )
+                    .limit(limit)
+                    .offset(offset)
+                    .where(eq(tripsTable.userId, ctx.userId!)),
+            )
+            if (getTripsError) {
+                console.error(
+                    `tripRouter.getTrips error: ${getTripsError.message}`,
+                )
+                throw new TRPCError({
+                    message: getTripsError.message,
+                    code: 'INTERNAL_SERVER_ERROR',
+                })
+            }
+
+            return {
+                data: {
+                    trips: trips!,
+                },
+            }
+        }),
     submitTrip: publicProcedure
         .input(
             z.object({
@@ -60,11 +119,11 @@ export const tripRouter = createTRPCRouter({
                 species: z.string(),
             }),
         )
-        .mutation(async ({ input }) => {
+        .mutation(async ({ input, ctx }) => {
             console.info(
                 `Invoked tripRouter.submitTrip with inputs: ${JSON.stringify(
                     input,
-                )}`,
+                )} for user ${ctx.userId}`,
             )
 
             const {
@@ -78,14 +137,15 @@ export const tripRouter = createTRPCRouter({
 
             const [trip, createTripError] = await handleAsync(
                 db
-                    .insert(trips)
+                    .insert(tripsTable)
                     .values({
                         destinationId,
                         startDate: new Date(startDate),
                         endDate: new Date(endDate),
                         headCount,
+                        userId: ctx.userId ?? '',
                     })
-                    .returning({ id: trips.id }),
+                    .returning({ id: tripsTable.id }),
             )
             if (createTripError) {
                 throw new TRPCError({

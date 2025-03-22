@@ -41,6 +41,7 @@ const TripPlannerForm = (
     props: Readonly<{
         initialDestination: string | null
         destinations: Destination[]
+        maxTripsPlanned: boolean
     }>,
 ) => {
     const [isLoading, setIsLoading] = useState(false)
@@ -102,12 +103,14 @@ const TripPlannerForm = (
                             <Button
                                 type="submit"
                                 className="w-full h-12 mt-4 bg-gradient-to-r from-[#0EA5E9] to-[#10B981] text-white"
-                                disabled={isLoading}
+                                disabled={isLoading || props.maxTripsPlanned}
                             >
                                 {isLoading && (
                                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                                 )}
-                                Plan My Trip
+                                {props.maxTripsPlanned
+                                    ? 'Upgrade to plan more trips'
+                                    : 'Plan My Trip'}
                             </Button>
                         </form>
                     </Form>

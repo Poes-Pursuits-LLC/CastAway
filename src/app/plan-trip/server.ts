@@ -1,5 +1,6 @@
 'use server'
 
+import { clerkClient, currentUser } from '@clerk/nextjs/server'
 import { api } from '@clients/api.client'
 
 export const submitTrip = async ({
@@ -18,7 +19,7 @@ export const submitTrip = async ({
     species: string
 }) => {
     try {
-        const response = await api.trip.submitTrip({
+        const response = await api.trip.submitTrip.mutate({
             destinationId,
             destinationName,
             startDate: startDate.toISOString(),
@@ -29,6 +30,16 @@ export const submitTrip = async ({
         const {
             data: { tripId },
         } = response
+
+        const user = await currentUser()
+        if (user) {
+            const client = await clerkClient()
+            await client.users.updateUserMetadata(user.id, {
+                privateMetadata: {
+                    tripsPlanned: (user.privateMetadata?.tripsPlanned ?? 0) + 1,
+                },
+            })
+        }
 
         return {
             tripId,

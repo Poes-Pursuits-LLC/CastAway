@@ -2,7 +2,7 @@ import { api } from '@clients/api.client'
 
 export const getTrip = async (id: string) => {
     try {
-        const response = await api.trip.getTrip({ id: Number(id) })
+        const response = await api.trip.getTrip.query({ id: Number(id) })
         const {
             data: { trip },
         } = response

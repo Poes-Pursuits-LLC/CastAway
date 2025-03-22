@@ -17,6 +17,10 @@ declare module "sst" {
       "type": "sst.sst.Secret"
       "value": string
     }
+    "FlagMaxTripsPlanned": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
     "InngestEventKey": {
       "type": "sst.sst.Secret"
       "value": string
@@ -34,6 +38,10 @@ declare module "sst" {
       "name": string
       "type": "sst.aws.Function"
       "url": string
+    }
+    "ServerUrl": {
+      "type": "sst.sst.Secret"
+      "value": string
     }
     "Web": {
       "type": "sst.aws.Nextjs"

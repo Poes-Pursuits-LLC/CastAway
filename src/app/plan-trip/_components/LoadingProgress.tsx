@@ -9,7 +9,7 @@ const loadingPhrases = [
     'Crafting your packing list...',
     'Analyzing weather patterns...',
     'Selecting the best flies...',
-    'Generating your trip itinerary...',
+    'Finding accommodations...',
 ]
 
 export const LoadingProgress = (props: { tripId: number }) => {
@@ -37,7 +37,7 @@ export const LoadingProgress = (props: { tripId: number }) => {
     }, [])
 
     return (
-        <div className="max-w-md mx-auto p-6 flex flex-col items-center justify-center">
+        <div className="max-w-md mx-auto p-6">
             <h3 className="h-12 mb-4 relative text-gray-700 text-xl">
                 {isComplete ? (
                     'Your trip is ready!'

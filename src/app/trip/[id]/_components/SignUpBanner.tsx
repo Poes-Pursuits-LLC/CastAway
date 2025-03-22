@@ -1,38 +1,42 @@
 'use client'
 
-import { Button } from '@ui/button'
-import { UserPlus } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Button } from '~/ui/button'
+import { useRouter } from 'next/navigation'
 import { useIsMobile } from '~/hooks/use-mobile'
-import { cn } from '~/lib/utils'
-import Link from 'next/link'
 
-const SignupBanner = () => {
+export const SignupBanner = () => {
+    const router = useRouter()
     const isMobile = useIsMobile()
 
     return (
-        <div
-            className={cn(
-                'w-full bg-gradient-to-r from-green-300 to-[#10B981] text-white py-4 transition-all duration-500 ease-in-out',
-                'opacity-100 translate-y-0',
-            )}
+        <motion.div
+            className="fixed top-0 left-0 right-0 z-50 p-2 bg-white/30 backdrop-blur-md border-b shadow-lg"
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
         >
-            <div className="container mx-auto px-4">
-                <div className="flex flex-col md:flex-row items-center gap-4">
-                    <div className="flex-1 text-center md:text-left">
-                        <h3 className="text-lg font-semibold mb-1">
-                            Sign up for free to edit this trip and save
-                            unlimited trips.
-                        </h3>
-                        <Link href="/login">
-                            <Button className="w-full sm:w-auto px-6 bg-white text-[#0EA5E9] hover:bg-white/90">
-                                <UserPlus className="w-4 h-4 mr-2" />
-                                {isMobile ? 'Sign up' : 'Sign up for free'}
-                            </Button>
-                        </Link>
-                    </div>
+            <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="text-center sm:text-left">
+                    <h3 className="text-md font-semibold text-gray-900">
+                        Want to plan more free trips?
+                    </h3>
+                    {!isMobile && (
+                        <p className="text-sm text-gray-600">
+                            Sign up to create, save, and manage unlimited trips
+                            for free!
+                        </p>
+                    )}
                 </div>
+                <Button
+                    className="w-full sm:w-auto bg-gradient-to-r from-[#0EA5E9] to-[#10B981] text-white"
+                    size="lg"
+                    onClick={() => router.push('/login')}
+                >
+                    Sign Up
+                </Button>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

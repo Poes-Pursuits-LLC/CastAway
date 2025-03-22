@@ -4,6 +4,7 @@ import { destinations } from '../destination/destination.sql'
 
 export const trips = pgTable('trips', {
     id: serial('id').primaryKey(),
+    userId: text('user_id').default(''),
     destinationId: integer('destination_id').references(() => destinations.id),
     description: text('description'),
     headCount: integer('head_count'),

@@ -2,7 +2,7 @@ import { api } from '@clients/api.client'
 
 export const getDestinations = async () => {
     try {
-        const response = await api.destination.getDestinations()
+        const response = await api.destination.getDestinations.query()
         const {
             data: { destinations },
         } = response

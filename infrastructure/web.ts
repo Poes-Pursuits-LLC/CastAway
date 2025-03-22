@@ -13,6 +13,8 @@ const webConfig: NextjsArgs = {
     },
     environment: {
         WEB_URL: secret.WebUrl.value,
+        FLAG_MAX_TRIPS_PLANNED: secret.FlagMaxTripsPlanned.value,
+        NEXT_PUBLIC_SERVER_URL: secret.ServerUrl.value,
         CLERK_SECRET_KEY: secret.ClerkSecret.value,
         NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: secret.ClerkPublishableKey.value,
     },

@@ -22,7 +22,6 @@ export default function RootLayout({
     return (
         <html lang="en" className={`${inter.className}`}>
             <body>
-                Impact-Site-Verification: d0416977-8669-4d9e-9ffa-a14c5c8129db
                 <ClerkProvider>
                     <TRPCReactProvider>{children}</TRPCReactProvider>
                 </ClerkProvider>
