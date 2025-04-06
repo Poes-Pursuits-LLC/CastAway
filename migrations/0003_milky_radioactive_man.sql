@@ -1,0 +1,1 @@
+ALTER TABLE "destinations" ALTER COLUMN "fishing_types" SET DATA TYPE fishing_types[];--> statement-breakpoint

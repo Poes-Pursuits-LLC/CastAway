@@ -15,6 +15,20 @@
       "when": 1742346425381,
       "tag": "0001_solid_fixer",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1743974030179,
+      "tag": "0002_sturdy_satana",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1743976055823,
+      "tag": "0003_natural_ultimatum",
+      "breakpoints": true
     }
   ]
 }

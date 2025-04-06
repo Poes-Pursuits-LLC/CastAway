@@ -5,7 +5,7 @@ export interface TacticItem {
     type: TacticTypeEnum
     createdAt: Date
     updatedAt: Date
-}
+ }
 
 export enum TacticTypeEnum {
     Fly = 'Fly',

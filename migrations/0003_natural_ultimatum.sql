@@ -1,0 +1,1 @@
+ALTER TABLE "destinations" ALTER COLUMN "fishing_types" fishing_types[] NOT NULL;

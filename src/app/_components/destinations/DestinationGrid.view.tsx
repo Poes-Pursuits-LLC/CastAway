@@ -10,6 +10,8 @@ import { useRouter } from 'next/navigation'
 
 const fishTypes = ['brook trout', 'rainbow trout', 'golden trout']
 
+// TODO: add toggle below to filter betwixt destination FishingTypes
+
 export const DestinationGridView = (
     props: Readonly<{
         destinations: Destination[]

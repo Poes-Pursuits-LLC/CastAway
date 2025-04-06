@@ -16,6 +16,7 @@ export const secret = {
 
     // Flags
     FlagMaxTripsPlanned: new sst.Secret('FlagMaxTripsPlanned'),
+    FlagMultiFishingTypes: new sst.Secret('FlagMultiFishingTypes')
 }
 
 export const allSecrets = Object.values(secret)
