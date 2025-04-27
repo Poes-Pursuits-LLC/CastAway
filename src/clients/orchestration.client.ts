@@ -13,7 +13,6 @@ const ZSubmitTrip = z.object({
         headCount: z.number(),
         startDate: z.string(),
         endDate: z.string(),
-        species: z.string(),
     }),
 }) satisfies LiteralZodEventSchema
 

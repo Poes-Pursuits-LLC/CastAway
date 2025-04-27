@@ -24,7 +24,6 @@ export const generateTripContent = orchestrationClient.createFunction(
             headCount,
             startDate,
             endDate,
-            species,
         } = event.data
 
         const [tripDetails, generateTripDetailsError] = await step.run(
@@ -36,7 +35,6 @@ export const generateTripContent = orchestrationClient.createFunction(
                         headCount,
                         startDate,
                         endDate,
-                        species,
                     }),
                 ),
         )

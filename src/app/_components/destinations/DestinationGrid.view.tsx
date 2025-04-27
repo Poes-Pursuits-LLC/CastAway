@@ -8,10 +8,6 @@ import Image from 'next/image'
 import { Button } from '~/ui/button'
 import { useRouter } from 'next/navigation'
 
-const fishTypes = ['brook trout', 'rainbow trout', 'golden trout']
-
-// TODO: add toggle below to filter betwixt destination FishingTypes
-
 export const DestinationGridView = (
     props: Readonly<{
         destinations: Destination[]
@@ -124,17 +120,6 @@ export const DestinationGridView = (
                                         Get Started
                                     </Button>
                                 </div>
-                            </div>
-
-                            <div className="flex flex-wrap gap-1 mt-3">
-                                {fishTypes.map((type) => (
-                                    <span
-                                        key={type}
-                                        className="inline-block py-1 px-2 text-xs bg-white/20 backdrop-blur-sm rounded-full"
-                                    >
-                                        {type}
-                                    </span>
-                                ))}
                             </div>
                         </div>
 

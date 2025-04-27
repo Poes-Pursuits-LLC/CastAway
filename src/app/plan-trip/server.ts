@@ -9,14 +9,12 @@ export const submitTrip = async ({
     startDate,
     endDate,
     headCount,
-    species,
 }: {
     destinationId: number
     destinationName: string
     startDate: Date
     endDate: Date
     headCount: number
-    species: string
 }) => {
     try {
         const response = await api.trip.submitTrip.mutate({
@@ -25,7 +23,6 @@ export const submitTrip = async ({
             startDate: startDate.toISOString(),
             endDate: endDate.toISOString(),
             headCount,
-            species,
         })
         const {
             data: { tripId },

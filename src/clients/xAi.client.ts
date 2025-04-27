@@ -15,23 +15,21 @@ export const generateTripDetails = async ({
     headCount,
     startDate,
     endDate,
-    species,
 }: {
     destinationName: string
     headCount: number
     startDate: string
     endDate: string
-    species: string
 }) => {
     const systemPrompt = `you are an expert trip planner and fly fishing expert who will construct trips for users 
-        based on where they want to go to fly fishing. 
+        based on where they want to go to fly fishing. for trout. 
         You will do your best to provide helpful advice and suggestions for the trip.
         You will return your suggestions in structured JSON, using the specific inputs provided 
         by the user to generate the trip details.
 
     Please provide a detailed plan for the trip, including ALL of the following:
     - A basic trip description that respects the user inputs.
-    - Up to three cities or towns that I should book accommodations in that would be a good base of operations for fishing.
+    - Up to three cities or towns that I should book accommodations in that would be a good base of operations for fishing. Just specify the city or town name, nor the state or country as the user already knows that by this point.
     - a recommended city with a decent airport that I should fly in to to get to the area.
     - A list of up to 5 flies to try that are appropriate for the species, typical weather conditions, and time of year. 
     (put them in the "tactics" list with a { name: [flyName] type: Fly } structure)
@@ -56,7 +54,6 @@ export const generateTripDetails = async ({
         headCount,
         startDate,
         endDate,
-        species,
     })
 
     const completion = await openai.beta.chat.completions.parse({
@@ -88,9 +85,7 @@ export const generateTripDetails = async ({
                 // flyShops: z.array(
                 //     z.object({
                 //         name: z.string(),
-                //         address: z.string(),
                 //         phone: z.string(),
-                //         website: z.string().optional(),
                 //     }),
                 // ),
             }),

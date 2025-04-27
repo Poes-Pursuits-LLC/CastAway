@@ -8,7 +8,6 @@ import { type DateRange } from 'react-day-picker'
 import { Button } from '@ui/button'
 import { Form } from '@ui/form'
 import LocationSelector from './LocationSelector'
-import SpeciesSelector from './SpeciesSelector'
 import DateRangeSelector from './DateRangeSelector'
 import { submitTrip } from '../server'
 import { TravelersInput } from './TravellerInput'
@@ -30,9 +29,6 @@ export const formSchema = z.object({
         .max(6, {
             message: 'Maximum 6 travelers allowed',
         }),
-    species: z.string({
-        required_error: 'Please select a fish species to target',
-    }),
 })
 
 export type TripFormValues = z.infer<typeof formSchema>
@@ -74,7 +70,6 @@ const TripPlannerForm = (
             startDate: dateRange.from,
             endDate: dateRange.to!,
             headCount: values.headCount,
-            species: values.species,
         })
         setTripId(newTripId)
     }
@@ -95,7 +90,6 @@ const TripPlannerForm = (
                                 destinations={props.destinations}
                             />
                             <TravelersInput control={form.control} />
-                            <SpeciesSelector control={form.control} />
                             <DateRangeSelector
                                 dateRange={dateRange}
                                 setDateRange={setDateRange}

@@ -116,7 +116,6 @@ export const tripRouter = createTRPCRouter({
                 startDate: z.string(),
                 endDate: z.string(),
                 headCount: z.number(),
-                species: z.string(),
             }),
         )
         .mutation(async ({ input, ctx }) => {
@@ -132,7 +131,6 @@ export const tripRouter = createTRPCRouter({
                 startDate,
                 endDate,
                 headCount,
-                species,
             } = input
 
             const [trip, createTripError] = await handleAsync(
@@ -163,7 +161,6 @@ export const tripRouter = createTRPCRouter({
                         headCount,
                         startDate,
                         endDate,
-                        species,
                     },
                 }),
             )
