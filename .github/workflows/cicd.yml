@@ -3,8 +3,6 @@ name: CI/CD
 on:
   push:
     branches: [main]
-    tags:
-      - "v*" # This will trigger on any tag starting with 'v'
 
 jobs:
   ci-cd:
@@ -46,11 +44,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # - name: Configure AWS credentials
-      #   uses: aws-actions/configure-aws-credentials@v4
-      #   with:
-      #     role-to-assume: arn:aws:iam::296062572585:role/lt-showcase-production-github
-      #     aws-region: us-east-1
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-east-1
 
       # - name: Run linting
       #   run: make lint
