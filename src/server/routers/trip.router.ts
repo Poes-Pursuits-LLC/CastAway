@@ -4,11 +4,7 @@ import { db } from '~/clients/db.client'
 import { orchestrationClient } from '~/clients/orchestration.client'
 import { trips as tripsTable } from '~/core/trip/trip.sql'
 import { handleAsync, resolvePromises } from '~/lib/utils'
-import {
-    createTRPCRouter,
-    protectedProcedure,
-    publicProcedure,
-} from '~/server/_internals/trpc'
+import { createTRPCRouter, publicProcedure } from '~/server/_internals/trpc'
 import { eq } from 'drizzle-orm'
 import { packingListItems } from '~/core/packing-list/packingListItem.sql'
 import { tripTactics } from '~/core/fishing-tactics/tactic.sql'
@@ -117,7 +113,7 @@ export const tripRouter = createTRPCRouter({
                 userId: z.string().nullable(),
             }),
         )
-        .mutation(async ({ input, ctx }) => {
+        .mutation(async ({ input }) => {
             console.info(
                 `Invoked tripRouter.submitTrip with inputs: ${JSON.stringify(
                     input,

@@ -1,6 +1,6 @@
 'use server'
 
-import { clerkClient, currentUser } from '@clerk/nextjs/server'
+import { auth, clerkClient, currentUser } from '@clerk/nextjs/server'
 import { api } from '@clients/api.client'
 
 export const submitTrip = async ({
@@ -17,12 +17,14 @@ export const submitTrip = async ({
     headCount: number
 }) => {
     try {
+        const { userId } = await auth()
         const response = await api.trip.submitTrip.mutate({
             destinationId,
             destinationName,
             startDate: startDate.toISOString(),
             endDate: endDate.toISOString(),
             headCount,
+            userId: userId ?? null,
         })
         const {
             data: { tripId },

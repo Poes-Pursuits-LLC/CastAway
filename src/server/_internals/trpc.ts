@@ -7,7 +7,7 @@
  * need to use are documented accordingly near the end.
  */
 
-import { initTRPC, TRPCError } from '@trpc/server'
+import { initTRPC } from '@trpc/server'
 import { CreateAWSLambdaContextOptions } from '@trpc/server/adapters/aws-lambda'
 import superjson from 'superjson'
 import { ZodError } from 'zod'
@@ -102,25 +102,6 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
     console.log(`[TRPC] ${path} took ${end - start}ms to execute`)
 
     return result
-})
-
-export const protectedProcedure = t.procedure.use(async function isAuthed({
-    next,
-    ctx,
-}) {
-    const userId = ctx.userId
-
-    if (!userId)
-        throw new TRPCError({
-            code: 'UNAUTHORIZED',
-            message: 'You are not authorized.',
-        })
-
-    return next({
-        ctx: {
-            user: userId,
-        },
-    })
 })
 
 /**
