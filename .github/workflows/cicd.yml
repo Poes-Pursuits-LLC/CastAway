@@ -48,12 +48,11 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: us-east-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      # - name: Run linting
-      #   run: make lint
-
-      # - name: Run type checking
-      #   run: make typecheck
+      # - name: Run Quality check
+      #   run: make check
 
       # - name: Run testing
       #   run: make test
