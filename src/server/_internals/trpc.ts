@@ -12,6 +12,7 @@ import { CreateAWSLambdaContextOptions } from '@trpc/server/adapters/aws-lambda'
 import superjson from 'superjson'
 import { ZodError } from 'zod'
 import type { APIGatewayProxyEvent } from 'aws-lambda'
+import { auth } from '@clerk/nextjs/server'
 
 /**
  * 1. CONTEXT
@@ -25,12 +26,13 @@ import type { APIGatewayProxyEvent } from 'aws-lambda'
  *
  * @see https://trpc.io/docs/server/context
  */
-export function createContext({
+export async function createContext({
     event,
 }: CreateAWSLambdaContextOptions<APIGatewayProxyEvent>) {
+    const { userId } = await auth()
     return {
         event,
-        userId: event.headers['x-userid'] ?? null,
+        userId: userId ?? null,
     }
 }
 type Context = Awaited<ReturnType<typeof createContext>>

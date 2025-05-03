@@ -9,9 +9,9 @@ import ShopsCard from './ShopsCard'
 import BudgetCard from './BudgetCard'
 import { getTrip } from '../data'
 import { cn } from '~/lib/utils'
-import SignupBanner from './SignUpBanner'
-import { currentUser } from '@clerk/nextjs/server'
-import UserBanner from '~/app/_components/UserBanner'
+// import SignupBanner from './SignUpBanner'
+// import { currentUser } from '@clerk/nextjs/server'
+// import UserBanner from '~/app/_components/UserBanner'
 
 export const TripPage = async ({
     params,
@@ -20,11 +20,11 @@ export const TripPage = async ({
 }) => {
     const { id } = await params
     const { trip } = await getTrip(id)
-    const user = await currentUser()
+    // const user = await currentUser()
 
     return (
         <>
-            {user ? <UserBanner /> : <SignupBanner />}
+            {/* {user ? <UserBanner /> : <SignupBanner />} */}
             <div className="relative min-h-screen pt-24 pb-16 px-4 bg-gray-50/20">
                 <div
                     className={cn(

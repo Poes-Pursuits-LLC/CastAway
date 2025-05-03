@@ -8,7 +8,6 @@ export const getDestinations = async () => {
         } = response
         return { destinations }
     } catch (error) {
-        console.error(`client.getDestinations error: ${error.message}`)
         throw new Error(`client.getDestinations error: ${error.message}`)
     }
 }

@@ -59,18 +59,19 @@ export const tripRouter = createTRPCRouter({
                 },
             }
         }),
-    getTrips: protectedProcedure
+    getTrips: publicProcedure
         .input(
             z.object({
                 limit: z.number(),
                 offset: z.number(),
+                userId: z.string(),
             }),
         )
-        .query(async ({ input, ctx }) => {
+        .query(async ({ input }) => {
             console.info(
                 `Invoked tripRouter.submitTrip with inputs: ${JSON.stringify(
                     input,
-                )} and userId ${ctx.userId}`,
+                )} and userId ${input.userId}`,
             )
 
             const { limit, offset } = input
@@ -90,12 +91,9 @@ export const tripRouter = createTRPCRouter({
                     )
                     .limit(limit)
                     .offset(offset)
-                    .where(eq(tripsTable.userId, ctx.userId!)),
+                    .where(eq(tripsTable.userId, input.userId)),
             )
             if (getTripsError) {
-                console.error(
-                    `tripRouter.getTrips error: ${getTripsError.message}`,
-                )
                 throw new TRPCError({
                     message: getTripsError.message,
                     code: 'INTERNAL_SERVER_ERROR',
@@ -116,13 +114,14 @@ export const tripRouter = createTRPCRouter({
                 startDate: z.string(),
                 endDate: z.string(),
                 headCount: z.number(),
+                userId: z.string().nullable(),
             }),
         )
         .mutation(async ({ input, ctx }) => {
             console.info(
                 `Invoked tripRouter.submitTrip with inputs: ${JSON.stringify(
                     input,
-                )} for user ${ctx.userId}`,
+                )} for user ${input.userId}`,
             )
 
             const {
@@ -131,6 +130,7 @@ export const tripRouter = createTRPCRouter({
                 startDate,
                 endDate,
                 headCount,
+                userId,
             } = input
 
             const [trip, createTripError] = await handleAsync(
@@ -141,7 +141,7 @@ export const tripRouter = createTRPCRouter({
                         startDate: new Date(startDate),
                         endDate: new Date(endDate),
                         headCount,
-                        userId: ctx.userId ?? '',
+                        userId: userId ?? '',
                     })
                     .returning({ id: tripsTable.id }),
             )

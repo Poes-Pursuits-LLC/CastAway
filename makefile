@@ -23,4 +23,4 @@ seed:
 
 # CICD
 deploy:
-	npx sst deploy --stage production --verbose
+	npx sst deploy --stage production
