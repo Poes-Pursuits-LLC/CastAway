@@ -1,6 +1,8 @@
 import { readdirSync } from 'fs'
 import type {} from './.sst/platform/config'
 
+// touche
+
 export default $config({
     app(input) {
         return {
